@@ -14,7 +14,6 @@ class LaunchView extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       body: Center(
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Gap(220),
             SvgPicture.asset(
