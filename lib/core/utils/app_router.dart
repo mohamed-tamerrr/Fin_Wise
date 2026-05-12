@@ -1,3 +1,5 @@
+import 'package:fin_wise/features/auth/views/login_view.dart';
+import 'package:fin_wise/features/auth/views/signup_view.dart';
 import 'package:fin_wise/features/onboarding/views/onboarding_view.dart';
 import 'package:fin_wise/launch.dart';
 import 'package:fin_wise/splash_view.dart';
@@ -7,6 +9,9 @@ abstract class AppRouter {
   static const kHomeView = '/home';
   static const launchView = '/launch';
   static const onboardingView = '/onboarding';
+  static const loginView = '/login';
+  static const signupView = '/signup';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -20,6 +25,14 @@ abstract class AppRouter {
       GoRoute(
         path: launchView,
         builder: (context, state) => LaunchView(),
+      ),
+      GoRoute(
+        path: loginView,
+        builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: signupView,
+        builder: (context, state) => const SignupView(),
       ),
     ],
   );

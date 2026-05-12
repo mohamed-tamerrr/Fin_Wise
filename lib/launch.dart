@@ -2,8 +2,10 @@ import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/shared/custom_btn.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fin_wise/core/utils/app_router.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class LaunchView extends StatelessWidget {
   const LaunchView({super.key});
@@ -40,6 +42,7 @@ class LaunchView extends StatelessWidget {
             ),
             const Gap(40),
             CustomButton(
+              onTap: () => context.push(AppRouter.loginView),
               text: 'Log In',
               textColor: Color(0xff093030),
               width: 200,
@@ -47,6 +50,7 @@ class LaunchView extends StatelessWidget {
             ),
             const Gap(16),
             CustomButton(
+              onTap: () => context.push(AppRouter.signupView),
               text: 'Sign Up',
               width: 200,
               color: AppColors.secondary,

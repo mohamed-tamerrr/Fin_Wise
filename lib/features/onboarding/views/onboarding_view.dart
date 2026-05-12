@@ -2,7 +2,7 @@ import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/features/onboarding/data/models/onboarding_model.dart';
 import 'package:fin_wise/features/onboarding/widgets/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,13 +20,11 @@ class _OnboardingViewState extends State<OnboardingView> {
   final List<OnboardingPage> _pages = const [
     OnboardingPage(
       title: 'Welcome To\nExpense Manager',
-      imagePath:
-          'assets/onboarding/first.png', // replace with your asset
+      imagePath: 'assets/onboarding/first.png',
     ),
     OnboardingPage(
       title: '¿Are You Ready To\nTake Control Of\nYour Finaces?',
-      imagePath:
-          'assets/onboarding/second.png', // replace with your asset
+      imagePath: 'assets/onboarding/second.png',
     ),
   ];
 
@@ -37,9 +35,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         curve: Curves.easeInOut,
       );
     } else {
-      context.push(
-        '/launch',
-      ); // Navigate to LaunchView after last page
+      context.push('/launch');
     }
   }
 
@@ -51,7 +47,6 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
-    // 80% of screen height for onboarding content
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Column(
@@ -154,4 +149,3 @@ class _OnboardingViewState extends State<OnboardingView> {
     );
   }
 }
- // todo : understand the pageview and pageview.builder and when the index updated and the navigation   

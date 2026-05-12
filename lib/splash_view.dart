@@ -60,7 +60,7 @@ class _SplashViewState extends State<SplashView>
 
   void navigateToLaunchView() {
     Timer(const Duration(seconds: 3), () {
-      context.go(AppRouter.launchView);
+      context.go(AppRouter.onboardingView);
     });
   }
 
