@@ -117,6 +117,9 @@ class _LoginViewState extends State<LoginView> {
                                         .validate()) {
                                       // Perform login action
                                     }
+                                    context.push(
+                                      AppRouter.kHomeView,
+                                    );
                                   },
                                 ),
                                 const Gap(20),
