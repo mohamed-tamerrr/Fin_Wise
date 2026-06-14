@@ -24,7 +24,7 @@ class TopRow extends StatelessWidget {
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white.withOpacity(.2),
+            color: Colors.white.withValues(alpha: .2),
           ),
           child: Icon(Icons.notifications),
         ),

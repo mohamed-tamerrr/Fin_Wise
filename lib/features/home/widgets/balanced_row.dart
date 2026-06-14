@@ -16,6 +16,7 @@ class BalanceRow extends StatelessWidget {
       children: [
         Row(
           children: [
+            /// Total Balance
             Expanded(
               child: BalanceItem(
                 title: "Total Balance",
@@ -24,6 +25,7 @@ class BalanceRow extends StatelessWidget {
               ),
             ),
 
+            /// Divider
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
@@ -37,6 +39,7 @@ class BalanceRow extends StatelessWidget {
               ),
             ),
 
+            /// Total Expense
             Expanded(
               child: BalanceItem(
                 title: "Total Expense",

@@ -1,7 +1,7 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
 import 'package:fin_wise/features/home/widgets/custom_card.dart';
-
+import 'package:fin_wise/features/home/widgets/tabs.dart';
 import 'package:fin_wise/features/home/widgets/top_row.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -50,40 +50,31 @@ class HomeView extends StatelessWidget {
               ),
             ),
           ),
-          _buildTopSection(),
-          // _buildTransactionsList(),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(60),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Gap(30),
+
+                  /// Card
+                  CustomCard(), // savings / revenue
+                  Gap(26),
+
+                  /// Tabs
+                  Tabs(), // daily / weekly / monthly
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
-
-  SliverToBoxAdapter _buildTopSection() {
-    return SliverToBoxAdapter(
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: AppColors.backgroundColor,
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(60),
-          ),
-        ),
-        child: Column(
-          children: [
-            Gap(30),
-            CustomCard(), // savings / revenue
-            Gap(10000),
-            // _buildTabs(), // daily / weekly / monthly
-          ],
-        ),
-      ),
-    );
-  }
-
-  // SliverList _buildTransactionsList() {
-  //   return SliverList(
-  //     delegate: SliverChildBuilderDelegate((context, index) {
-  //       return TransactionItem();
-  //     }, childCount: 10),
-  //   );
-  // }
 }
