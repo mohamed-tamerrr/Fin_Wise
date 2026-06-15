@@ -3,7 +3,8 @@ import 'package:fin_wise/features/auth/views/signup_view.dart';
 import 'package:fin_wise/features/home/views/home_view.dart';
 import 'package:fin_wise/features/onboarding/views/onboarding_view.dart';
 import 'package:fin_wise/launch.dart';
-import 'package:fin_wise/splash_view.dart';
+import 'package:fin_wise/root.dart';
+
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -15,10 +16,7 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => HomeView(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => Root()),
       GoRoute(
         path: onboardingView,
         builder: (context, state) => OnboardingView(),
