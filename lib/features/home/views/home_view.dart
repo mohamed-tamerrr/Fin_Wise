@@ -3,6 +3,7 @@ import 'package:fin_wise/features/home/widgets/balanced_row.dart';
 import 'package:fin_wise/features/home/widgets/custom_card.dart';
 import 'package:fin_wise/features/home/widgets/tabs.dart';
 import 'package:fin_wise/features/home/widgets/top_row.dart';
+import 'package:fin_wise/features/home/widgets/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -15,6 +16,7 @@ class HomeView extends StatelessWidget {
       backgroundColor: AppColors.primary,
       body: CustomScrollView(
         slivers: [
+          /// AppBar
           SliverAppBar(
             // toolbarHeight: 250,
             expandedHeight: 250,
@@ -50,6 +52,8 @@ class HomeView extends StatelessWidget {
               ),
             ),
           ),
+
+          /// Body
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.all(16),
@@ -59,19 +63,52 @@ class HomeView extends StatelessWidget {
                   top: Radius.circular(60),
                 ),
               ),
-              child: Column(
-                children: [
-                  Gap(30),
-
-                  /// Card
-                  CustomCard(), // savings / revenue
-                  Gap(26),
-
-                  /// Tabs
-                  Tabs(), // daily / weekly / monthly
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                child: Column(
+                  children: [
+                    Gap(30),
+                    CustomCard(),
+                    Gap(26),
+                    Tabs(),
+                    // Gap(20),
+                  ],
+                ),
               ),
             ),
+          ),
+
+          /// Transctions
+          DecoratedSliver(
+            decoration: BoxDecoration(
+              color: AppColors.backgroundColor,
+            ),
+            sliver: SliverPadding(
+              padding: const EdgeInsets.only(
+                left: 36,
+                right: 36,
+                bottom: 36,
+              ),
+              sliver: SliverList.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Transaction(
+                    iconPath: 'assets/Icon Salary.png',
+                    title: 'Salary',
+                    time: '18:27 - April 30',
+                    type: 'Monthly',
+                    amount: '\$4,000.00',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(color: AppColors.backgroundColor),
           ),
         ],
       ),

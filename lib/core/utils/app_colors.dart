@@ -6,4 +6,5 @@ class AppColors {
   static final Color backgroundColor = Color(0xffF1FFF3);
   static final Color expenses = Color(0xff0068FF);
   static final Color textColor = Color(0xff0E3E3E);
+  static final Color secondaryTextColor = Color(0xff052224);
 }
