@@ -73,31 +73,31 @@ class _RootState extends State<Root> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _NavItem(
+              NavItem(
                 icon: Icons.home_outlined,
                 index: 0,
                 current: currentScreen,
                 onTap: _onTabTap,
               ),
-              _NavItem(
+              NavItem(
                 icon: Icons.bar_chart,
                 index: 1,
                 current: currentScreen,
                 onTap: _onTabTap,
               ),
-              _NavItem(
+              NavItem(
                 icon: Icons.swap_horiz,
                 index: 2,
                 current: currentScreen,
                 onTap: _onTabTap,
               ),
-              _NavItem(
+              NavItem(
                 icon: Icons.layers_outlined,
                 index: 3,
                 current: currentScreen,
                 onTap: _onTabTap,
               ),
-              _NavItem(
+              NavItem(
                 icon: Icons.person_outline,
                 index: 4,
                 current: currentScreen,
@@ -111,13 +111,13 @@ class _RootState extends State<Root> {
   }
 }
 
-class _NavItem extends StatelessWidget {
+class NavItem extends StatelessWidget {
   final IconData icon;
   final int index;
   final int current;
   final void Function(int) onTap;
 
-  const _NavItem({
+  const NavItem({
     required this.icon,
     required this.index,
     required this.current,
