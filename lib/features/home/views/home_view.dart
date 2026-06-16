@@ -1,9 +1,11 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
 import 'package:fin_wise/features/home/widgets/custom_card.dart';
-import 'package:fin_wise/features/home/widgets/tabs.dart';
-import 'package:fin_wise/features/home/widgets/top_row.dart';
+import 'package:fin_wise/features/home/widgets/home_tabs.dart';
+
 import 'package:fin_wise/features/home/widgets/transaction.dart';
+import 'package:fin_wise/shared/custom_app_bar.dart';
+import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -12,70 +14,60 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: CustomScrollView(
+    return ColoredBox(
+      color: AppColors.primary,
+      child: CustomScrollView(
         slivers: [
           /// AppBar
-          SliverAppBar(
-            // toolbarHeight: 250,
-            expandedHeight: 250,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-            pinned: true,
-            automaticallyImplyLeading: false,
-            backgroundColor: AppColors.primary,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Padding(
-                padding: const EdgeInsets.only(
-                  top: 28,
-                  left: 30,
-                  right: 30,
-                ),
-                child: Column(
+          CusomAppBar(
+            topRow: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Gap(40),
-                    TopRow(),
-                    const Gap(20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                      ),
-                      child: BalanceRow(
-                        totalBalance: "\$7,783.00",
-                        totalExp: "-\$1,187.40",
-                      ),
+                    CustomText(
+                      text: "Hi, Welcome Back",
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
                     ),
                   ],
                 ),
-              ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white.withValues(alpha: .2),
+                  ),
+                  child: Icon(Icons.notifications),
+                ),
+              ],
             ),
           ),
 
           /// Body
           SliverToBoxAdapter(
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.only(
+                left: 36,
+                right: 36,
+                top: 16,
+                bottom: 16,
+              ),
               decoration: BoxDecoration(
                 color: AppColors.backgroundColor,
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(60),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                child: Column(
-                  children: [
-                    Gap(30),
-                    CustomCard(),
-                    Gap(26),
-                    Tabs(),
-                    // Gap(20),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const Gap(30),
+                  const CustomCard(),
+                  const Gap(26),
+                  const HomeTabs(),
+                  // Gap(20),
+                ],
               ),
             ),
           ),
@@ -108,7 +100,7 @@ class HomeView extends StatelessWidget {
           ),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: Container(color: AppColors.backgroundColor),
+            child: ColoredBox(color: AppColors.backgroundColor),
           ),
         ],
       ),

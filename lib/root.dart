@@ -1,4 +1,5 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/features/analysis/view/analysis_view.dart';
 import 'package:fin_wise/features/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +11,7 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  final List<Widget> screens = [
-    HomeView(),
-    // Add other screens here as you build them
-    SizedBox(), // placeholder for search
-    SizedBox(), // placeholder for transfer
-    SizedBox(), // placeholder for layers
-    SizedBox(), // placeholder for profile
-  ];
+  final List<Widget> screens = [HomeView(), AnalysisView()];
 
   late PageController controller;
   int currentScreen = 0;

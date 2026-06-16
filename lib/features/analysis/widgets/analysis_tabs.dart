@@ -2,15 +2,15 @@ import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class Tabs extends StatefulWidget {
-  const Tabs({super.key});
+class AnalysisTabs extends StatefulWidget {
+  const AnalysisTabs({super.key});
 
   @override
-  State<Tabs> createState() => _TabsState();
+  State<AnalysisTabs> createState() => _AnalysisTabsState();
 }
 
-class _TabsState extends State<Tabs> {
-  final tabs = ["Daily", "Weekly", "Monthly"];
+class _AnalysisTabsState extends State<AnalysisTabs> {
+  final tabs = ["Daily", "Weekly", "Monthly", "Year"];
   int selected = 0;
   @override
   Widget build(BuildContext context) {
