@@ -1,17 +1,18 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CusomAppBar extends StatelessWidget {
   const CusomAppBar({super.key, this.topRow});
+
   final Widget? topRow;
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // toolbarHeight: 250,
-      expandedHeight: 250,
+      expandedHeight: 250.h,
       elevation: 0,
       scrolledUnderElevation: 0,
       pinned: true,
@@ -19,21 +20,23 @@ class CusomAppBar extends StatelessWidget {
       backgroundColor: AppColors.primary,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
-          padding: const EdgeInsets.only(
-            top: 28,
-            left: 30,
-            right: 30,
+          padding: EdgeInsets.only(
+            top: 28.h,
+            left: 30.w,
+            right: 30.w,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Gap(40),
-              topRow ?? SizedBox.shrink(),
+              Gap(40.h),
 
-              const Gap(20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: BalanceRow(
+              topRow ?? const SizedBox.shrink(),
+
+              Gap(20.h),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: const BalanceRow(
                   totalBalance: "\$7,783.00",
                   totalExp: "-\$1,187.40",
                 ),

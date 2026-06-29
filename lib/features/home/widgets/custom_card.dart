@@ -1,6 +1,8 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CustomCard extends StatelessWidget {
@@ -9,19 +11,19 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 20,
+      padding: EdgeInsets.symmetric(
+        horizontal: 24.w,
+        vertical: 20.h,
       ),
       width: double.infinity,
-      height: 152,
+
+      constraints: BoxConstraints(minHeight: 152.h),
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
       ),
       child: Row(
         children: [
-          // Left side - circular progress + label
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -29,48 +31,52 @@ class CustomCard extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    width: 70,
-                    height: 70,
+                    width: 70.w,
+                    height: 70.h,
                     child: CircularProgressIndicator(
                       value: 0.5,
-                      strokeWidth: 3,
+                      strokeWidth: 3.w,
                       backgroundColor: AppColors.backgroundColor,
                       valueColor: AlwaysStoppedAnimation<Color>(
                         AppColors.expenses,
                       ),
                     ),
                   ),
+
                   Image.asset(
                     'assets/Car.png',
-                    width: 40,
-                    height: 40,
+                    width: 40.w,
+                    height: 40.h,
                   ),
                 ],
               ),
-              const Gap(6),
+
+              Gap(6.h),
+
               CustomText(
                 text: 'Savings\nOn Goals',
                 textAlign: TextAlign.center,
-                color: AppColors.secondaryTextColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+                style: AppStyles.medium12,
               ),
             ],
           ),
 
-          const Gap(20),
+          Gap(20.w),
 
-          // Divider
-          Container(width: 2, color: AppColors.backgroundColor),
+          SizedBox(
+            height: 80.h,
+            child: VerticalDivider(
+              thickness: 2.w,
+              color: AppColors.backgroundColor,
+            ),
+          ),
 
-          const Gap(20),
+          Gap(20.w),
 
-          // Right side - revenue + food
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Revenue row
                 CardStatRow(
                   iconPath: 'assets/Salary.png',
                   label: 'Revenue Last Week',
@@ -79,15 +85,14 @@ class CustomCard extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.r),
                   child: Divider(
-                    thickness: 2,
+                    thickness: 2.h,
                     color: AppColors.backgroundColor,
-                    height: 20,
+                    height: 20.h,
                   ),
                 ),
 
-                // Food row
                 CardStatRow(
                   iconPath: 'assets/Food.png',
                   label: 'Food Last Week',
@@ -110,6 +115,7 @@ class CardStatRow extends StatelessWidget {
     required this.amount,
     required this.amountColor,
   });
+
   final String iconPath;
   final String label;
   final String amount;
@@ -121,27 +127,27 @@ class CardStatRow extends StatelessWidget {
       children: [
         Image.asset(
           iconPath,
-          width: 28,
-          height: 28,
+          width: 28.w,
+          height: 28.h,
           color: AppColors.secondaryTextColor,
         ),
-        const Gap(8),
+
+        Gap(8.w),
+
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              label,
-              style: TextStyle(
+            CustomText(
+              text: label,
+              style: AppStyles.regular12.copyWith(
                 color: AppColors.secondaryTextColor,
-                fontSize: 11,
               ),
             ),
-            Text(
-              amount,
-              style: TextStyle(
+
+            CustomText(
+              text: amount,
+              style: AppStyles.bold15.copyWith(
                 color: amountColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ],

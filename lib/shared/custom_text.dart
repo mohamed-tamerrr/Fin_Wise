@@ -8,22 +8,26 @@ class CustomText extends StatelessWidget {
     this.fontWeight,
     this.color,
     this.textAlign,
+    this.style,
   });
   final String text;
   final double? fontSize;
   final FontWeight? fontWeight;
   final Color? color;
   final TextAlign? textAlign;
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return Text(
       textAlign: textAlign,
       text,
-      style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        color: color,
-      ),
+      style:
+          style ??
+          TextStyle(
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+          ),
     );
   }
 }

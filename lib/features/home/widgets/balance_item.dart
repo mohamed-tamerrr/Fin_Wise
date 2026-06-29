@@ -1,4 +1,8 @@
+import 'package:fin_wise/core/utils/app_styles.dart';
+import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class BalanceItem extends StatelessWidget {
   const BalanceItem({
@@ -7,8 +11,10 @@ class BalanceItem extends StatelessWidget {
     required this.title,
     this.amountColor,
   });
+
   final String amount, title;
   final Color? amountColor;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,19 +22,15 @@ class BalanceItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.arrow_outward, size: 16),
-            SizedBox(width: 6),
-            Text(title),
+            Icon(Icons.arrow_outward, size: 16.sp),
+            SizedBox(width: 6.w),
+            CustomText(text: title, style: AppStyles.regular12),
           ],
         ),
-        SizedBox(height: 8),
-        Text(
-          amount,
-          style: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            color: amountColor ?? Colors.white,
-          ),
+        Gap(8.h),
+        CustomText(
+          text: amount,
+          style: AppStyles.bold24.copyWith(color: amountColor),
         ),
       ],
     );

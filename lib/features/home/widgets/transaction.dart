@@ -1,4 +1,5 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -45,16 +46,12 @@ class Transaction extends StatelessWidget {
               children: [
                 CustomText(
                   text: title,
-                  fontSize: 15,
-                  color: AppColors.secondaryTextColor,
-                  fontWeight: FontWeight.w500,
+                  style: AppStyles.medium15,
                 ),
                 const Gap(2),
                 CustomText(
                   text: time,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 12,
-                  color: AppColors.expenses,
+                  style: AppStyles.semiBold12,
                 ),
               ],
             ),
@@ -73,8 +70,7 @@ class Transaction extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: CustomText(
               text: type,
-              color: AppColors.secondaryTextColor,
-              fontWeight: FontWeight.w300,
+              style: AppStyles.light13,
             ),
           ),
 
@@ -88,12 +84,7 @@ class Transaction extends StatelessWidget {
           const Gap(12),
 
           // Amount
-          CustomText(
-            text: amount,
-            color: amountColor ?? AppColors.secondaryTextColor,
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
+          CustomText(text: amount, style: AppStyles.medium15),
         ],
       ),
     );

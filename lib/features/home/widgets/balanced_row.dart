@@ -1,6 +1,9 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/features/home/widgets/balance_item.dart';
+import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class BalanceRow extends StatelessWidget {
@@ -9,14 +12,15 @@ class BalanceRow extends StatelessWidget {
     required this.totalBalance,
     required this.totalExp,
   });
+
   final String totalBalance, totalExp;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
           children: [
-            /// Total Balance
             Expanded(
               child: BalanceItem(
                 title: "Total Balance",
@@ -25,21 +29,17 @@ class BalanceRow extends StatelessWidget {
               ),
             ),
 
-            /// Divider
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: SizedBox(
-                height: 50,
+                height: 50.h,
                 child: VerticalDivider(
-                  width: 1,
+                  width: 1.w,
                   color: AppColors.secondary,
                 ),
               ),
             ),
 
-            /// Total Expense
             Expanded(
               child: BalanceItem(
                 title: "Total Expense",
@@ -49,49 +49,48 @@ class BalanceRow extends StatelessWidget {
             ),
           ],
         ),
-        const Gap(20),
-        Column(
+
+        Gap(20.h),
+
+        Stack(
           children: [
-            Stack(
-              children: [
-                // background
-                Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: .3),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
+            Container(
+              height: 40.h,
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                borderRadius: BorderRadius.circular(25.r),
+              ),
+            ),
 
-                // progress
-                Container(
-                  height: 40,
-                  width:
-                      120, // control percentage manually or dynamically
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "30%",
-                    style: TextStyle(color: Colors.white),
-                  ),
+            Container(
+              constraints: BoxConstraints(minHeight: 40.h),
+              width: 120.w,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(25.r),
+              ),
+              alignment: Alignment.center,
+              child: CustomText(
+                text: "30%",
+                style: AppStyles.regular12.copyWith(
+                  color: AppColors.backgroundColor,
                 ),
+              ),
+            ),
 
-                // right text
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ),
-                      child: Text("\$20,000.00"),
-                    ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                  ),
+                  child: CustomText(
+                    text: "\$20,000.00",
+                    style: AppStyles.medium13,
                   ),
                 ),
-              ],
+              ),
             ),
           ],
         ),
