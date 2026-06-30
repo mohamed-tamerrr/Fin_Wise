@@ -44,7 +44,7 @@ class BalanceRow extends StatelessWidget {
               child: BalanceItem(
                 title: "Total Expense",
                 amount: totalExp,
-                amountColor: AppColors.expenses,
+                amountColor: AppColors.oceanBlueButton,
               ),
             ),
           ],

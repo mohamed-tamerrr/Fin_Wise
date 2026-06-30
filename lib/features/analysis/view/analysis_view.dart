@@ -1,10 +1,14 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/features/analysis/widgets/analysis_tabs.dart';
-import 'package:fin_wise/features/analysis/widgets/chart.dart';
+import 'package:fin_wise/features/analysis/widgets/income_expense_chart.dart';
+import 'package:fin_wise/features/analysis/widgets/money_info.dart';
+
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class AnalysisView extends StatelessWidget {
@@ -16,18 +20,19 @@ class AnalysisView extends StatelessWidget {
       color: AppColors.primary,
       child: CustomScrollView(
         slivers: [
+          /// App Bar
           CusomAppBar(
             topRow: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
                   text: 'Analysis',
-                  color: AppColors.secondaryTextColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  style: AppStyles.semiBold20.copyWith(
+                    color: AppColors.secondaryTextColor,
+                  ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white.withValues(alpha: .2),
@@ -40,75 +45,67 @@ class AnalysisView extends StatelessWidget {
 
           SliverToBoxAdapter(
             child: Container(
-              padding: const EdgeInsets.only(
-                left: 36,
-                right: 36,
-                top: 16,
-                bottom: 16,
+              padding: EdgeInsets.only(
+                left: 36.w,
+                right: 36.w,
+                top: 16.h,
+                bottom: 16.h,
               ),
               decoration: BoxDecoration(
                 color: AppColors.backgroundColor,
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(60),
+                  top: Radius.circular(60.r),
                 ),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AnalysisTabs(),
-                  Gap(30),
-                  // IncomeExpenseChart(),
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: BarChart(
-                      BarChartData(
-                        borderData: FlBorderData(show: false),
-                        maxY: 15000,
-                        minY: 0,
-                        backgroundColor: AppColors.secondary,
-                        alignment: BarChartAlignment.spaceAround,
-
-                        titlesData: FlTitlesData(
-                          // show: false,
-                          bottomTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              reservedSize: 40,
-                              showTitles: true,
-                              getTitlesWidget: (value, meta) {
-                                const days = [
-                                  'Mon',
-                                  'Tue',
-                                  'Wed',
-                                  'Thu',
-                                  'Fri',
-                                  'Sat',
-                                  'Sun',
-                                ];
-                                return SideTitleWidget(
-                                  meta: meta,
-                                  child: CustomText(
-                                    text: days[value.toInt()],
-                                    color: AppColors.textColor,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          rightTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              showTitles: false,
-                            ),
-                          ),
-                          topTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              showTitles: false,
-                            ),
-                          ),
+                  Gap(30.h),
+                  IncomeExpenseChart(),
+                  Gap(30.h),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                    ),
+                    child: Row(
+                      children: [
+                        MoneyInfo(
+                          image: 'assets/Income.png',
+                          title: 'Income',
+                          amount: '\$4,120.00',
                         ),
-                        barGroups: _buildBarGroups(),
-                      ),
+                        Spacer(),
+                        MoneyInfo(
+                          image: 'assets/Expenses.png',
+                          title: 'Expense',
+                          amount: '\$1.187.40',
+                          color: AppColors.oceanBlueButton,
+                        ),
+                      ],
                     ),
                   ),
-                  // Gap(20),
+                  Gap(30.h),
+                  CustomText(
+                    text: 'My targets',
+                    style: AppStyles.medium15,
+                  ),
+                  Gap(15.h),
+                  Row(
+                    children: [
+                      TargetItem(
+                        title: 'Travel',
+                        value: .3,
+                        percentage: '30%',
+                      ),
+                      Gap(20.w),
+                      TargetItem(
+                        title: 'Car',
+                        value: .5,
+                        percentage: '50%',
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -117,44 +114,61 @@ class AnalysisView extends StatelessWidget {
       ),
     );
   }
+}
 
-  List<BarChartGroupData> _buildBarGroups() {
-    // [income, expense] per day
-    final data = [
-      [8000.0, 1000.0], // Mon
-      [2000.0, 1500.0], // Tue
-      [6000.0, 1000.0], // Wed
-      [3000.0, 1000.0], // Thu
-      [10000.0, 1000.0], // Fri
-      [2000.0, 1500.0], // Sat
-      [6000.0, 5000.0], // Sun
-    ];
-
-    return data.asMap().entries.map((e) {
-      final index = e.key;
-      final income = e.value[0];
-      final expense = e.value[1];
-
-      return BarChartGroupData(
-        x: index,
-        barRods: [
-          // Income bar (blue)
-          BarChartRodData(
-            toY: income,
-            color: AppColors.expenses,
-            width: 8,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          // Expense bar (green)
-          BarChartRodData(
-            toY: expense,
-            color: AppColors.primary,
-            width: 8,
-            borderRadius: BorderRadius.circular(4),
-          ),
-        ],
-        barsSpace: 4, // space between the two bars
-      );
-    }).toList();
+class TargetItem extends StatelessWidget {
+  const TargetItem({
+    super.key,
+    required this.title,
+    this.value,
+    required this.percentage,
+  });
+  final String title;
+  final double? value;
+  final String percentage;
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 160.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.r),
+          color: AppColors.lightBlueButton,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: AlignmentGeometry.center,
+              children: [
+                SizedBox(
+                  width: 90.w,
+                  height: 90.h,
+                  child: CircularProgressIndicator(
+                    value: value,
+                    color: AppColors.oceanBlueButton,
+                    backgroundColor: AppColors.backgroundColor,
+                    strokeWidth: 4,
+                  ),
+                ),
+                CustomText(
+                  text: percentage,
+                  style: AppStyles.semiBold20.copyWith(
+                    color: AppColors.backgroundColor,
+                  ),
+                ),
+              ],
+            ),
+            Gap(5.h),
+            CustomText(
+              text: title,
+              style: AppStyles.medium15.copyWith(
+                color: AppColors.backgroundColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

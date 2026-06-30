@@ -1,6 +1,8 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AnalysisTabs extends StatefulWidget {
   const AnalysisTabs({super.key});
@@ -16,10 +18,10 @@ class _AnalysisTabsState extends State<AnalysisTabs> {
   Widget build(BuildContext context) {
     return Container(
       // margin: const EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.all(6),
+      padding: EdgeInsets.all(6.r),
       decoration: BoxDecoration(
         color: AppColors.secondary,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Row(
         children: List.generate(tabs.length, (index) {
@@ -31,23 +33,19 @@ class _AnalysisTabsState extends State<AnalysisTabs> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 14,
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 14.h),
                   decoration: BoxDecoration(
                     color: selected == index
                         ? AppColors.primary
                         : Colors.transparent,
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(16.r),
                   ),
                   alignment: Alignment.center,
                   child: CustomText(
                     text: tabs[index],
-                    fontSize: 15,
+                    style: AppStyles.regular15,
                   ),
                 ),
               ),

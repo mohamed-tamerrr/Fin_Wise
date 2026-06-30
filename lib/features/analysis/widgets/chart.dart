@@ -1,118 +1,12 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
+import 'package:fin_wise/core/utils/app_styles.dart';
+import 'package:fin_wise/shared/custom_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class IncomeExpenseChart extends StatelessWidget {
-  const IncomeExpenseChart({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.secondary,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Income & Expenses',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
-                children: [
-                  _IconButton(icon: Icons.search),
-                  const SizedBox(width: 8),
-                  _IconButton(
-                    icon: Icons.calendar_month_outlined,
-                  ),
-                ],
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          // Chart
-          SizedBox(
-            height: 200,
-            child: BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.spaceAround,
-                maxY: 15000,
-                minY: 0,
-                gridData: FlGridData(
-                  show: true,
-                  drawVerticalLine: false,
-                  horizontalInterval: 5000,
-                  getDrawingHorizontalLine: (value) => FlLine(
-                    color: Colors.grey.withOpacity(0.3),
-                    strokeWidth: 1,
-                    dashArray: [4, 4], // dotted line
-                  ),
-                ),
-                borderData: FlBorderData(show: false),
-                titlesData: FlTitlesData(
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      interval: 5000,
-                      reservedSize: 36,
-                      getTitlesWidget: (value, meta) => Text(
-                        '${(value / 1000).toInt()}k',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: (value, meta) {
-                        const days = [
-                          'Mon',
-                          'Tue',
-                          'Wed',
-                          'Thu',
-                          'Fri',
-                          'Sat',
-                          'Sun',
-                        ];
-                        return Text(
-                          days[value.toInt()],
-                          style: const TextStyle(
-                            fontSize: 10,
-                            color: Colors.grey,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  rightTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  topTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                ),
-                barGroups: _buildBarGroups(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+class Chart extends StatelessWidget {
+  const Chart({super.key});
 
   List<BarChartGroupData> _buildBarGroups() {
     // [income, expense] per day
@@ -134,40 +28,121 @@ class IncomeExpenseChart extends StatelessWidget {
       return BarChartGroupData(
         x: index,
         barRods: [
-          // Income bar (blue)
           BarChartRodData(
             toY: income,
-            color: AppColors.expenses,
-            width: 8,
-            borderRadius: BorderRadius.circular(4),
+            color: AppColors.oceanBlueButton,
+            width: 8.w,
+            borderRadius: BorderRadius.circular(4.r),
           ),
-          // Expense bar (green)
           BarChartRodData(
             toY: expense,
             color: AppColors.primary,
-            width: 8,
-            borderRadius: BorderRadius.circular(4),
+            width: 8.w,
+            borderRadius: BorderRadius.circular(4.r),
           ),
         ],
-        barsSpace: 4, // space between the two bars
+        barsSpace: 4,
       );
     }).toList();
   }
-}
-
-class _IconButton extends StatelessWidget {
-  final IconData icon;
-  const _IconButton({required this.icon});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(6),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(8),
+    return SizedBox(
+      height: 160.h,
+      child: BarChart(
+        BarChartData(
+          alignment: BarChartAlignment.spaceAround,
+          maxY: 15000,
+          minY: 1000,
+
+          gridData: FlGridData(
+            checkToShowHorizontalLine: (value) => true,
+            drawVerticalLine: false,
+            horizontalInterval: 5000,
+            getDrawingHorizontalLine: (value) => FlLine(
+              color: const Color(0xff6DB6FE),
+              strokeWidth: 1,
+              dashArray: [3, 4],
+            ),
+          ),
+
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              bottom: BorderSide(color: Colors.black, width: 1),
+              left: BorderSide.none,
+              right: BorderSide.none,
+              top: BorderSide.none,
+            ),
+          ),
+
+          extraLinesData: ExtraLinesData(
+            horizontalLines: [
+              HorizontalLine(
+                y: 15000,
+                color: const Color(0xff6DB6FE),
+                strokeWidth: 1,
+                dashArray: [3, 4],
+              ),
+            ],
+          ),
+
+          titlesData: FlTitlesData(
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: 5000,
+                reservedSize: 36.w,
+                getTitlesWidget: (value, meta) => CustomText(
+                  text: '${(value / 1000).toInt()}k',
+                  style: AppStyles.regular14.copyWith(
+                    color: const Color(0xff6DB6FE),
+                  ),
+                ),
+              ),
+            ),
+
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 28.h,
+                getTitlesWidget: (value, meta) {
+                  const days = [
+                    'Mon',
+                    'Tue',
+                    'Wed',
+                    'Thu',
+                    'Fri',
+                    'Sat',
+                    'Sun',
+                  ];
+
+                  return Padding(
+                    padding: EdgeInsets.only(top: 6.h),
+                    child: CustomText(
+                      text: days[value.toInt()],
+                      style: AppStyles.regular14.copyWith(
+                        color: AppColors.lettersandIcons,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            rightTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+
+            topTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+          ),
+
+          barGroups: _buildBarGroups(),
+        ),
       ),
-      child: Icon(icon, size: 18, color: AppColors.primary),
     );
   }
 }

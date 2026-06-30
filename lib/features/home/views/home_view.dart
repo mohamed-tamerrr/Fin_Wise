@@ -46,7 +46,6 @@ class HomeView extends StatelessWidget {
           ),
 
           /// Body
-          // todo : Start styles here
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.only(

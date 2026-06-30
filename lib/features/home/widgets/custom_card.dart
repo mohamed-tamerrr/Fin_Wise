@@ -38,7 +38,7 @@ class CustomCard extends StatelessWidget {
                       strokeWidth: 3.w,
                       backgroundColor: AppColors.backgroundColor,
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.expenses,
+                        AppColors.oceanBlueButton,
                       ),
                     ),
                   ),
@@ -97,7 +97,7 @@ class CustomCard extends StatelessWidget {
                   iconPath: 'assets/Food.png',
                   label: 'Food Last Week',
                   amount: '-\$100.00',
-                  amountColor: AppColors.expenses,
+                  amountColor: AppColors.oceanBlueButton,
                 ),
               ],
             ),
