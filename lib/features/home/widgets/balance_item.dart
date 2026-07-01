@@ -1,3 +1,4 @@
+import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,12 @@ class BalanceItem extends StatelessWidget {
     required this.amount,
     required this.title,
     this.amountColor,
+    required this.icon,
   });
 
   final String amount, title;
   final Color? amountColor;
-
+  final String icon;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +24,12 @@ class BalanceItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.arrow_outward, size: 16.sp),
+            Image.asset(
+              icon,
+              width: 12.w,
+              height: 12.h,
+              color: AppColors.secondaryTextColor,
+            ),
             SizedBox(width: 6.w),
             CustomText(text: title, style: AppStyles.regular12),
           ],

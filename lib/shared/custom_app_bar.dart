@@ -5,14 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CusomAppBar extends StatelessWidget {
-  const CusomAppBar({super.key, this.topRow});
+  const CusomAppBar({
+    super.key,
+    this.topRow,
+    this.body,
+    this.expandedHeight,
+  });
 
   final Widget? topRow;
+  final Widget? body;
+  final double? expandedHeight;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 250.h,
+      expandedHeight: expandedHeight ?? 250.h,
       elevation: 0,
       scrolledUnderElevation: 0,
       pinned: true,
@@ -34,13 +41,7 @@ class CusomAppBar extends StatelessWidget {
 
               Gap(20.h),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: const BalanceRow(
-                  totalBalance: "\$7,783.00",
-                  totalExp: "-\$1,187.40",
-                ),
-              ),
+              body ?? const SizedBox.shrink(),
             ],
           ),
         ),

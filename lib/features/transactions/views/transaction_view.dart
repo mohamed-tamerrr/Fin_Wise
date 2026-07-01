@@ -1,17 +1,16 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/features/home/widgets/balanced_row.dart';
-import 'package:fin_wise/features/home/widgets/custom_card.dart';
-import 'package:fin_wise/features/home/widgets/home_tabs.dart';
+import 'package:fin_wise/features/analysis/widgets/icon_button.dart';
 import 'package:fin_wise/features/home/widgets/transaction.dart';
+import 'package:fin_wise/features/transactions/widgets/income_expense_selection.dart';
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class TransactionView extends StatelessWidget {
+  const TransactionView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,41 +18,61 @@ class HomeView extends StatelessWidget {
       color: AppColors.primary,
       child: CustomScrollView(
         slivers: [
-          /// AppBar
           CusomAppBar(
+            expandedHeight: 300.h,
             topRow: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: "Hi, Welcome Back",
-                      style: AppStyles.semiBold20,
-                    ),
-                  ],
+                CustomText(
+                  text: 'Transaction',
+                  style: AppStyles.semiBold20.copyWith(
+                    color: AppColors.secondaryTextColor,
+                  ),
                 ),
-
                 Container(
                   padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white.withValues(alpha: .2),
                   ),
-                  child: Icon(Icons.notifications, size: 24.sp),
+                  child: Icon(Icons.notifications),
                 ),
               ],
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: const BalanceRow(
-                totalBalance: "\$7,783.00",
-                totalExp: "-\$1,187.40",
-              ),
+            body: Column(
+              children: [
+                Container(
+                  height: 75.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14.r),
+                    color: AppColors.backgroundColor,
+                  ),
+                  child: Column(
+                    children: [
+                      Gap(10.h),
+                      CustomText(
+                        text: 'Total Balance',
+                        style: AppStyles.medium15.copyWith(
+                          color: AppColors.lettersandIcons,
+                        ),
+                      ),
+                      CustomText(
+                        text: '\$7,783.00',
+                        style: AppStyles.bold24.copyWith(
+                          color: AppColors.lettersandIcons,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(15.h),
+                IncomeExpenseSelection(),
+              ],
             ),
           ),
 
-          /// Body
+          /// Date and Calendar
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.only(
@@ -69,17 +88,27 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Gap(30.h),
-                  const CustomCard(),
-                  Gap(26.h),
-                  const HomeTabs(),
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: 'April',
+                        style: AppStyles.medium15,
+                      ),
+                      CustomIconButton(
+                        icon: Icons.calendar_month_outlined,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
 
-          /// Transctions
+          /// Transactions
           DecoratedSliver(
             decoration: BoxDecoration(
               color: AppColors.backgroundColor,
@@ -104,10 +133,6 @@ class HomeView extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: ColoredBox(color: AppColors.backgroundColor),
           ),
         ],
       ),

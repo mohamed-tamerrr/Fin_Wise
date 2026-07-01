@@ -1,6 +1,7 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/features/analysis/view/analysis_view.dart';
+import 'package:fin_wise/features/analysis/views/analysis_view.dart';
 import 'package:fin_wise/features/home/views/home_view.dart';
+import 'package:fin_wise/features/transactions/views/transaction_view.dart';
 import 'package:flutter/material.dart';
 
 class Root extends StatefulWidget {
@@ -11,7 +12,13 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  final List<Widget> screens = [HomeView(), AnalysisView()];
+  final List<Widget> screens = [
+    HomeView(),
+    AnalysisView(),
+    TransactionView(),
+    Placeholder(),
+    Placeholder(),
+  ];
 
   late PageController controller;
   int currentScreen = 0;

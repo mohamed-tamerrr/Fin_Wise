@@ -33,9 +33,11 @@ class IncomeExpenseChart extends StatelessWidget {
               ),
               Row(
                 children: [
-                  ChartIcon(icon: Icons.search),
+                  CustomIconButton(icon: Icons.search),
                   Gap(8.w),
-                  ChartIcon(icon: Icons.calendar_month_outlined),
+                  CustomIconButton(
+                    icon: Icons.calendar_month_outlined,
+                  ),
                 ],
               ),
             ],

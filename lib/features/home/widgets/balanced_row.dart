@@ -26,6 +26,7 @@ class BalanceRow extends StatelessWidget {
                 title: "Total Balance",
                 amount: totalBalance,
                 amountColor: AppColors.backgroundColor,
+                icon: 'assets/Income.png',
               ),
             ),
 
@@ -45,6 +46,7 @@ class BalanceRow extends StatelessWidget {
                 title: "Total Expense",
                 amount: totalExp,
                 amountColor: AppColors.oceanBlueButton,
+                icon: 'assets/Expenses.png',
               ),
             ),
           ],
