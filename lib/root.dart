@@ -1,6 +1,8 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/features/analysis/views/analysis_view.dart';
+import 'package:fin_wise/features/categories/views/category_view.dart';
 import 'package:fin_wise/features/home/views/home_view.dart';
+import 'package:fin_wise/features/profile/views/profile_view.dart';
 import 'package:fin_wise/features/transactions/views/transaction_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +18,8 @@ class _RootState extends State<Root> {
     HomeView(),
     AnalysisView(),
     TransactionView(),
-    Placeholder(),
-    Placeholder(),
+    CategoryView(),
+    ProfileView(),
   ];
 
   late PageController controller;

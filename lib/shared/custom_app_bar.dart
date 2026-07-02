@@ -40,7 +40,6 @@ class CusomAppBar extends StatelessWidget {
               topRow ?? const SizedBox.shrink(),
 
               Gap(20.h),
-
               body ?? const SizedBox.shrink(),
             ],
           ),

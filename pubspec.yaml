@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/splash/
     - assets/onboarding/
+    - assets/categories/
     - assets/
 
   #   - images/a_dot_ham.jpeg
