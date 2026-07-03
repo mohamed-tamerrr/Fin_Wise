@@ -2,6 +2,7 @@ import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/features/analysis/widgets/icon_button.dart';
 import 'package:fin_wise/features/home/widgets/transaction.dart';
+import 'package:fin_wise/features/transactions/widgets/data_row.dart';
 import 'package:fin_wise/features/transactions/widgets/income_expense_selection.dart';
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_text.dart';
@@ -18,7 +19,7 @@ class TransactionView extends StatelessWidget {
       color: AppColors.primary,
       child: CustomScrollView(
         slivers: [
-          CusomAppBar(
+          CustomAppBar(
             expandedHeight: 300.h,
             topRow: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,21 +90,7 @@ class TransactionView extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        text: 'April',
-                        style: AppStyles.medium15,
-                      ),
-                      CustomIconButton(
-                        icon: Icons.calendar_month_outlined,
-                      ),
-                    ],
-                  ),
-                ],
+                children: [DateRow()],
               ),
             ),
           ),

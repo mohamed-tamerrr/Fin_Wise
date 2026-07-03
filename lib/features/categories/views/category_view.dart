@@ -33,7 +33,7 @@ class CategoryView extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           /// AppBar
-          CusomAppBar(
+          CustomAppBar(
             topRow: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

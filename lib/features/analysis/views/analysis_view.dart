@@ -21,7 +21,7 @@ class AnalysisView extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           /// App Bar
-          CusomAppBar(
+          CustomAppBar(
             topRow: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

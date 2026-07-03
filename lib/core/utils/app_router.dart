@@ -1,5 +1,6 @@
 import 'package:fin_wise/features/auth/views/login_view.dart';
 import 'package:fin_wise/features/auth/views/signup_view.dart';
+import 'package:fin_wise/features/categories/views/add_expense_view.dart';
 import 'package:fin_wise/features/categories/views/category_view.dart';
 import 'package:fin_wise/features/categories/views/category_view_details.dart';
 
@@ -17,6 +18,7 @@ abstract class AppRouter {
   static const signupView = '/signup';
   static const categoryView = '/categories';
   static const categoryViewDetails = '/category-details';
+  static const addExpenseView = '/add-expense';
 
   static final router = GoRouter(
     routes: [
@@ -43,11 +45,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: categoryViewDetails,
-
         builder: (context, state) {
           final title = state.extra as String;
           return CategoryViewDetails(title: title);
         },
+      ),
+      GoRoute(
+        path: addExpenseView,
+        builder: (context, state) => AddExpenseView(),
       ),
     ],
   );
