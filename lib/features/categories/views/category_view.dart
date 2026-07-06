@@ -1,29 +1,54 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_router.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
+import 'package:fin_wise/features/categories/data/category_model.dart';
 import 'package:fin_wise/features/categories/widgets/category_card.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
-
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({super.key});
-
-  static List<Map<String, String>> categories = [
-    {"Food": 'assets/categories/food.png'},
-    {"Transport": 'assets/categories/transport.png'},
-    {"Medicine": 'assets/categories/medi.png'},
-    {"Groceries": 'assets/categories/groc.png'},
-    {"Rent": 'assets/categories/rent.png'},
-    {"Gifts": 'assets/categories/gifts.png'},
-    {"Savings": 'assets/categories/savings.png'},
-    {"Entertainment": 'assets/categories/enter.png'},
-    {"More": 'assets/categories/more.png'},
+  static const List<CategoryModel> categories = [
+    CategoryModel(
+      name: 'Food',
+      image: 'assets/categories/food.png',
+    ),
+    CategoryModel(
+      name: 'Transport',
+      image: 'assets/categories/transport.png',
+    ),
+    CategoryModel(
+      name: 'Medicine',
+      image: 'assets/categories/medi.png',
+    ),
+    CategoryModel(
+      name: 'Groceries',
+      image: 'assets/categories/groc.png',
+    ),
+    CategoryModel(
+      name: 'Rent',
+      image: 'assets/categories/rent.png',
+    ),
+    CategoryModel(
+      name: 'Gifts',
+      image: 'assets/categories/gifts.png',
+    ),
+    CategoryModel(
+      name: 'Savings',
+      image: 'assets/categories/savings.png',
+    ),
+    CategoryModel(
+      name: 'Entertainment',
+      image: 'assets/categories/enter.png',
+    ),
+    CategoryModel(
+      name: 'More',
+      image: 'assets/categories/more.png',
+    ),
   ];
 
   @override
@@ -94,14 +119,13 @@ class CategoryView extends StatelessWidget {
                       childAspectRatio: 0.79,
                     ),
                 itemBuilder: (context, index) {
-                  final title = categories[index].keys.first;
-                  final image = categories[index].values.first;
+                  final category = categories[index];
                   return CategoryCard(
-                    image: image,
-                    title: title,
+                    image: category.image,
+                    title: category.name,
                     onTap: () => context.push(
                       AppRouter.categoryViewDetails,
-                      extra: title,
+                      extra: category.name,
                     ),
                   );
                 },

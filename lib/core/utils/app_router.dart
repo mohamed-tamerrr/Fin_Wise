@@ -5,6 +5,7 @@ import 'package:fin_wise/features/categories/views/category_view.dart';
 import 'package:fin_wise/features/categories/views/category_view_details.dart';
 
 import 'package:fin_wise/features/onboarding/views/onboarding_view.dart';
+import 'package:fin_wise/features/profile/views/edit_profile_view.dart';
 import 'package:fin_wise/launch.dart';
 import 'package:fin_wise/root.dart';
 
@@ -19,6 +20,10 @@ abstract class AppRouter {
   static const categoryView = '/categories';
   static const categoryViewDetails = '/category-details';
   static const addExpenseView = '/add-expense';
+  static const editProfileView = '/edit-profile';
+  static const settingsProfileView = '/settings-profile';
+  static const securityProfileView = '/security-profile';
+  static const helpProfileView = '/help-profile';
 
   static final router = GoRouter(
     routes: [
@@ -53,6 +58,10 @@ abstract class AppRouter {
       GoRoute(
         path: addExpenseView,
         builder: (context, state) => AddExpenseView(),
+      ),
+      GoRoute(
+        path: editProfileView,
+        builder: (context, state) => EditProfileView(),
       ),
     ],
   );
