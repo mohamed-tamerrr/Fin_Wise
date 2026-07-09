@@ -1,3 +1,4 @@
+import 'package:fin_wise/core/helpers/icon_mapper.dart';
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/shared/custom_text.dart';
@@ -9,7 +10,7 @@ class CategoryTransactions extends StatelessWidget {
   final String time;
   final String type;
   final String amount;
-  final String iconPath;
+  final String iconName;
   final Color? amountColor;
 
   const CategoryTransactions({
@@ -18,7 +19,7 @@ class CategoryTransactions extends StatelessWidget {
     required this.time,
     required this.type,
     required this.amount,
-    required this.iconPath,
+    required this.iconName,
     this.amountColor,
   });
 
@@ -30,12 +31,7 @@ class CategoryTransactions extends StatelessWidget {
       child: Row(
         children: [
           // Icon
-          Image.asset(
-            iconPath,
-            width: 40,
-            height: 40,
-            fit: BoxFit.contain,
-          ),
+          Icon(IconMapper.getIcon(iconName)),
           const Gap(16),
 
           // Title + Date

@@ -71,12 +71,7 @@ class _CustomTextFormFieldState
         fillColor: AppColors.secondary,
         hintText: widget.hintText,
       ),
-      validator: (v) {
-        if (v == null || v.isEmpty) {
-          return 'Please Enter ${widget.hintText}';
-        }
-        return null;
-      },
+
       obscureText: _isObscure,
     );
   }

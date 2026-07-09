@@ -30,4 +30,19 @@ class TransactionRepo {
       await IsarService.isar.transactionModels.delete(id);
     });
   }
+
+  Stream<List<TransactionModel>> watchAllTransactions() {
+    return IsarService.isar.transactionModels.where().watch(
+      fireImmediately: true,
+    );
+  }
+
+  Stream<List<TransactionModel>> watchByCategory(
+    int categoryId,
+  ) {
+    return IsarService.isar.transactionModels
+        .filter()
+        .categoryIdEqualTo(categoryId)
+        .watch(fireImmediately: true);
+  }
 }

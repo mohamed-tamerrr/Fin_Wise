@@ -1,5 +1,6 @@
 import 'package:fin_wise/features/auth/views/login_view.dart';
 import 'package:fin_wise/features/auth/views/signup_view.dart';
+import 'package:fin_wise/features/categories/data/models/category_model.dart';
 import 'package:fin_wise/features/categories/views/add_expense_view.dart';
 import 'package:fin_wise/features/categories/views/category_view.dart';
 import 'package:fin_wise/features/categories/views/category_view_details.dart';
@@ -51,13 +52,16 @@ abstract class AppRouter {
       GoRoute(
         path: categoryViewDetails,
         builder: (context, state) {
-          final title = state.extra as String;
-          return CategoryViewDetails(title: title);
+          final category = state.extra as CategoryModel;
+          return CategoryViewDetails(category: category);
         },
       ),
       GoRoute(
         path: addExpenseView,
-        builder: (context, state) => AddExpenseView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel;
+          return AddExpenseView(category: category);
+        },
       ),
       GoRoute(
         path: editProfileView,

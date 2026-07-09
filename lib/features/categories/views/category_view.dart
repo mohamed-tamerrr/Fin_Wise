@@ -96,7 +96,7 @@ class CategoryView extends StatelessWidget {
                           title: category.name,
                           onTap: () => context.push(
                             AppRouter.categoryViewDetails,
-                            extra: category.name,
+                            extra: category,
                           ),
                         );
                       },

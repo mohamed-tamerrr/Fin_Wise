@@ -1,19 +1,24 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_router.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
+import 'package:fin_wise/features/categories/data/models/category_model.dart';
 import 'package:fin_wise/features/categories/widgets/category_transactions.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
+import 'package:fin_wise/features/transactions/cubit/transaction_cubit.dart';
+import 'package:fin_wise/features/transactions/cubit/transaction_state.dart';
 import 'package:fin_wise/features/transactions/widgets/data_row.dart';
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_btn.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class CategoryViewDetails extends StatelessWidget {
-  const CategoryViewDetails({super.key, required this.title});
-  final String title;
+  const CategoryViewDetails({super.key, required this.category});
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class CategoryViewDetails extends StatelessWidget {
                       ),
 
                       CustomText(
-                        text: title,
+                        text: category.name,
                         style: AppStyles.semiBold20,
                       ),
                       Container(
@@ -104,21 +109,88 @@ class CategoryViewDetails extends StatelessWidget {
                       right: 36,
                       bottom: 36,
                     ),
-                    sliver: SliverList.builder(
-                      itemCount: 10,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 20,
+                    sliver:
+                        BlocBuilder<
+                          TransactionCubit,
+                          TransactionState
+                        >(
+                          builder: (context, state) {
+                            if (state is TransactionLoading) {
+                              return const SliverToBoxAdapter(
+                                child: Center(
+                                  child:
+                                      CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+
+                            if (state is TransactionFailure) {
+                              return SliverToBoxAdapter(
+                                child: Center(
+                                  child: Text(
+                                    state.errorMessage,
+                                  ),
+                                ),
+                              );
+                            }
+
+                            if (state is TransactionSuccess) {
+                              final categoryTransactions =
+                                  state.transactions
+                                      .where(
+                                        (t) =>
+                                            t.categoryId ==
+                                            category.id,
+                                      )
+                                      .toList()
+                                    ..sort(
+                                      (a, b) => b.date.compareTo(
+                                        a.date,
+                                      ),
+                                    ); // most recent first
+
+                              if (categoryTransactions.isEmpty) {
+                                return const SliverToBoxAdapter(
+                                  child: Center(
+                                    child: Text(
+                                      'No transactions yet',
+                                    ),
+                                  ),
+                                );
+                              }
+
+                              return SliverList.builder(
+                                itemCount:
+                                    categoryTransactions.length,
+                                itemBuilder: (context, index) {
+                                  final transaction =
+                                      categoryTransactions[index];
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.only(
+                                          bottom: 20,
+                                        ),
+                                    child: CategoryTransactions(
+                                      iconName: category
+                                          .iconName, // same category = same icon
+                                      title: transaction.title,
+                                      time: DateFormat(
+                                        'HH:mm - MMMM d',
+                                      ).format(transaction.date),
+                                      type: category.name,
+                                      amount:
+                                          '-\$${transaction.amount.toStringAsFixed(2)}',
+                                    ),
+                                  );
+                                },
+                              );
+                            }
+
+                            return const SliverToBoxAdapter(
+                              child: SizedBox(),
+                            );
+                          },
                         ),
-                        child: CategoryTransactions(
-                          iconPath: 'assets/Icon Salary.png',
-                          title: 'Salary',
-                          time: '18:27 - April 30',
-                          type: 'Monthly',
-                          amount: '-\$26,00',
-                        ),
-                      ),
-                    ),
                   ),
                 ),
 
@@ -144,7 +216,10 @@ class CategoryViewDetails extends StatelessWidget {
             bottom: 24.h,
             child: CustomButton(
               onTap: () {
-                context.push(AppRouter.addExpenseView);
+                context.push(
+                  AppRouter.addExpenseView,
+                  extra: category,
+                );
               },
               text: 'Add Expenses',
               textStyle: AppStyles.medium15.copyWith(
