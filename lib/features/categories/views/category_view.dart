@@ -1,55 +1,19 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_router.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
+import 'package:fin_wise/features/categories/cubit/category_cubit.dart';
 import 'package:fin_wise/features/categories/data/models/category_view_model.dart';
 import 'package:fin_wise/features/categories/widgets/category_card.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
 import 'package:fin_wise/shared/custom_app_bar.dart';
 import 'package:fin_wise/shared/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({super.key});
-  static const List<CategoryModel> categories = [
-    CategoryModel(
-      name: 'Food',
-      image: 'assets/categories/food.png',
-    ),
-    CategoryModel(
-      name: 'Transport',
-      image: 'assets/categories/transport.png',
-    ),
-    CategoryModel(
-      name: 'Medicine',
-      image: 'assets/categories/medi.png',
-    ),
-    CategoryModel(
-      name: 'Groceries',
-      image: 'assets/categories/groc.png',
-    ),
-    CategoryModel(
-      name: 'Rent',
-      image: 'assets/categories/rent.png',
-    ),
-    CategoryModel(
-      name: 'Gifts',
-      image: 'assets/categories/gifts.png',
-    ),
-    CategoryModel(
-      name: 'Savings',
-      image: 'assets/categories/savings.png',
-    ),
-    CategoryModel(
-      name: 'Entertainment',
-      image: 'assets/categories/enter.png',
-    ),
-    CategoryModel(
-      name: 'More',
-      image: 'assets/categories/more.png',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -106,28 +70,43 @@ class CategoryView extends StatelessWidget {
                   top: Radius.circular(60.r),
                 ),
               ),
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.zero,
-                itemCount: categories.length,
-                shrinkWrap: true,
-                gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 24.h,
-                      crossAxisSpacing: 16.w,
-                      childAspectRatio: 0.79,
-                    ),
-                itemBuilder: (context, index) {
-                  final category = categories[index];
-                  return CategoryCard(
-                    image: category.image,
-                    title: category.name,
-                    onTap: () => context.push(
-                      AppRouter.categoryViewDetails,
-                      extra: category.name,
-                    ),
-                  );
+              child: BlocBuilder<CategoryCubit, CategoryState>(
+                builder: (context, state) {
+                  if (state is CategoryLoading) {
+                    return const CircularProgressIndicator();
+                  }
+                  if (state is CategorySuccess) {
+                    return GridView.builder(
+                      physics:
+                          const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      itemCount: state.categories.length,
+                      shrinkWrap: true,
+                      gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 24.h,
+                            crossAxisSpacing: 16.w,
+                            childAspectRatio: 0.79,
+                          ),
+                      itemBuilder: (context, index) {
+                        final category = state.categories[index];
+                        return CategoryCard(
+                          iconName: category.iconName,
+                          title: category.name,
+                          onTap: () => context.push(
+                            AppRouter.categoryViewDetails,
+                            extra: category.name,
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  if (state is CategoryFailure) {
+                    return Text(state.errorMessage);
+                  }
+                  return const SizedBox();
                 },
               ),
             ),

@@ -12,5 +12,6 @@ class TransactionModel {
 
   late DateTime date;
 
+  @Index()
   late int categoryId;
 }

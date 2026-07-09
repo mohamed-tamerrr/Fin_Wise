@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fin_wise/core/helpers/icon_mapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -11,13 +12,13 @@ import 'package:fin_wise/shared/custom_text.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key? key,
-    required this.image,
+    super.key,
+    required this.iconName,
     required this.title,
     required this.onTap,
-  }) : super(key: key);
+  });
 
-  final String image;
+  final String iconName;
   final String title;
   final void Function()? onTap;
   @override
@@ -32,14 +33,15 @@ class CategoryCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.oceanBlueButton,
+                // color: Colors.red,
                 borderRadius: BorderRadius.circular(20.r),
               ),
 
               /// Image
-              child: Image.asset(
-                image,
+              child: Icon(
+                IconMapper.getIcon(iconName),
                 color: AppColors.backgroundColor,
-                width: 36.w,
+                size: 36.w,
               ),
             ),
           ),
