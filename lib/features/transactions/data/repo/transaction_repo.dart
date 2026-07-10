@@ -1,5 +1,5 @@
-import 'package:fin_wise/core/database/isar_service.dart';
-import 'package:fin_wise/features/transactions/data/models/transaction_model.dart';
+import '../../../../core/database/isar_service.dart';
+import '../models/transaction_model.dart';
 import 'package:isar/isar.dart';
 
 class TransactionRepo {
@@ -43,6 +43,7 @@ class TransactionRepo {
     return IsarService.isar.transactionModels
         .filter()
         .categoryIdEqualTo(categoryId)
+        .sortByDateDesc()
         .watch(fireImmediately: true);
   }
 }

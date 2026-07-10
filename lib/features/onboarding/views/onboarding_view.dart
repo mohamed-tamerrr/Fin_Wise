@@ -1,6 +1,6 @@
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/features/onboarding/data/models/onboarding_model.dart';
-import 'package:fin_wise/features/onboarding/widgets/dots_indicator.dart';
+import '../../../core/utils/app_colors.dart';
+import '../data/models/onboarding_model.dart';
+import '../widgets/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';

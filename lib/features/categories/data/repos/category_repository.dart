@@ -1,5 +1,5 @@
-import 'package:fin_wise/core/database/isar_service.dart';
-import 'package:fin_wise/features/categories/data/models/category_model.dart';
+import '../../../../core/database/isar_service.dart';
+import '../models/category_model.dart';
 import 'package:isar/isar.dart';
 
 class CategoryRepository {

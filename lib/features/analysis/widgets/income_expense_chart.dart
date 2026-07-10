@@ -1,9 +1,9 @@
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/features/analysis/widgets/chart.dart';
-import 'package:fin_wise/features/analysis/widgets/icon_button.dart';
-import 'package:fin_wise/features/analysis/widgets/legend_item.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_styles.dart';
+import 'chart.dart';
+import 'icon_button.dart';
+import 'legend_item.dart';
+import '../../../shared/custom_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

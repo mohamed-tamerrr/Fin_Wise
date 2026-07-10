@@ -1,14 +1,17 @@
-import 'package:fin_wise/features/auth/views/login_view.dart';
-import 'package:fin_wise/features/auth/views/signup_view.dart';
-import 'package:fin_wise/features/categories/data/models/category_model.dart';
-import 'package:fin_wise/features/categories/views/add_expense_view.dart';
-import 'package:fin_wise/features/categories/views/category_view.dart';
-import 'package:fin_wise/features/categories/views/category_view_details.dart';
+import '../../features/auth/views/login_view.dart';
+import '../../features/auth/views/signup_view.dart';
+import '../../features/categories/data/models/category_model.dart';
+import '../../features/categories/views/add_expense_view.dart';
+import '../../features/categories/views/category_view.dart';
+import '../../features/categories/views/category_view_details.dart';
 
-import 'package:fin_wise/features/onboarding/views/onboarding_view.dart';
-import 'package:fin_wise/features/profile/views/edit_profile_view.dart';
-import 'package:fin_wise/launch.dart';
-import 'package:fin_wise/root.dart';
+import '../../features/onboarding/views/onboarding_view.dart';
+import '../../features/profile/views/edit_profile_view.dart';
+import '../../features/transactions/cubit/transaction_cubit.dart';
+import '../../features/transactions/data/repo/transaction_repo.dart';
+import '../../launch.dart';
+import '../../root.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -56,7 +59,12 @@ abstract class AppRouter {
         path: categoryViewDetails,
         builder: (context, state) {
           final category = state.extra as CategoryModel;
-          return CategoryViewDetails(category: category);
+          return BlocProvider(
+            create: (context) =>
+                TransactionCubit(TransactionRepo())
+                  ..watchByCategory(category.id),
+            child: CategoryViewDetails(category: category),
+          );
         },
       ),
       GoRoute(

@@ -1,4 +1,4 @@
-import 'package:fin_wise/features/transactions/data/models/transaction_model.dart';
+import '../data/models/transaction_model.dart';
 
 sealed class TransactionState {}
 

@@ -1,7 +1,7 @@
-import 'package:fin_wise/core/helpers/icon_mapper.dart';
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import '../../../core/helpers/icon_mapper.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_styles.dart';
+import '../../../shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

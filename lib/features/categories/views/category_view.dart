@@ -1,11 +1,11 @@
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_router.dart';
-import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/features/categories/cubit/category_cubit.dart';
-import 'package:fin_wise/features/categories/widgets/category_card.dart';
-import 'package:fin_wise/features/home/widgets/balanced_row.dart';
-import 'package:fin_wise/shared/custom_app_bar.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_router.dart';
+import '../../../core/utils/app_styles.dart';
+import '../cubit/category_cubit.dart';
+import '../widgets/category_card.dart';
+import '../../home/widgets/balanced_row.dart';
+import '../../../shared/custom_app_bar.dart';
+import '../../../shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,10 +23,10 @@ class CategoryView extends StatelessWidget {
           /// AppBar
           CustomAppBar(
             topRow: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: .spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     CustomText(
                       text: 'Categories',
@@ -36,7 +36,7 @@ class CategoryView extends StatelessWidget {
                 ),
 
                 Container(
-                  padding: EdgeInsets.all(10.r),
+                  padding: .all(10.r),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white.withValues(alpha: .2),
@@ -46,7 +46,7 @@ class CategoryView extends StatelessWidget {
               ],
             ),
             body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: .symmetric(horizontal: 20.w),
               child: const BalanceRow(
                 totalBalance: '\$7,783.00',
                 totalExp: '-\$1,187.40',
@@ -57,7 +57,7 @@ class CategoryView extends StatelessWidget {
           /// Body
           SliverToBoxAdapter(
             child: Container(
-              padding: EdgeInsets.only(
+              padding: .only(
                 left: 36.w,
                 right: 36.w,
                 bottom: 16.h,

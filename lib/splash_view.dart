@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_router.dart';
+import 'core/utils/app_colors.dart';
+import 'core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';

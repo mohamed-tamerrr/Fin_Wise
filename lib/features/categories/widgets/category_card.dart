@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fin_wise/core/helpers/icon_mapper.dart';
+import '../../../core/helpers/icon_mapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_styles.dart';
+import '../../../shared/custom_text.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({

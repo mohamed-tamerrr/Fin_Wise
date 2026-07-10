@@ -1,8 +1,8 @@
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/core/utils/app_router.dart';
-import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/features/profile/data/models/profile_menu_item.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_router.dart';
+import '../../../core/utils/app_styles.dart';
+import '../data/models/profile_menu_item.dart';
+import '../../../shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

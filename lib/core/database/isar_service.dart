@@ -1,5 +1,5 @@
-import 'package:fin_wise/features/categories/data/models/category_model.dart';
-import 'package:fin_wise/features/transactions/data/models/transaction_model.dart';
+import '../../features/categories/data/models/category_model.dart';
+import '../../features/transactions/data/models/transaction_model.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 

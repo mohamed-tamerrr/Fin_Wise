@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:fin_wise/features/transactions/cubit/transaction_state.dart';
-import 'package:fin_wise/features/transactions/data/models/transaction_model.dart';
-import 'package:fin_wise/features/transactions/data/repo/transaction_repo.dart';
+import 'transaction_state.dart';
+import '../data/models/transaction_model.dart';
+import '../data/repo/transaction_repo.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 

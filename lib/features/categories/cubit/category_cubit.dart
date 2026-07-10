@@ -1,5 +1,5 @@
-import 'package:fin_wise/features/categories/data/models/category_model.dart';
-import 'package:fin_wise/features/categories/data/repos/category_repository.dart';
+import '../data/models/category_model.dart';
+import '../data/repos/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

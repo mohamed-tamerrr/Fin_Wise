@@ -1,8 +1,8 @@
-import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/shared/custom_btn.dart';
-import 'package:fin_wise/shared/custom_text.dart';
+import 'core/utils/app_colors.dart';
+import 'shared/custom_btn.dart';
+import 'shared/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fin_wise/core/utils/app_router.dart';
+import 'core/utils/app_router.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
