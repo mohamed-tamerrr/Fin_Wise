@@ -32,8 +32,9 @@ class CategoryRepository {
   /// Call this once at app startup
   Future<void> seedDefaultCategoriesIfNeeded() async {
     final existing = await getCategories();
-    if (existing.isNotEmpty)
+    if (existing.isNotEmpty) {
       return; // already seeded, don't duplicate
+    }
 
     final defaults = [
       CategoryModel()

@@ -23,7 +23,7 @@ class BalanceRow extends StatelessWidget {
           children: [
             Expanded(
               child: BalanceItem(
-                title: "Total Balance",
+                title: 'Total Balance',
                 amount: totalBalance,
                 amountColor: AppColors.backgroundColor,
                 icon: 'assets/Income.png',
@@ -43,7 +43,7 @@ class BalanceRow extends StatelessWidget {
 
             Expanded(
               child: BalanceItem(
-                title: "Total Expense",
+                title: 'Total Expense',
                 amount: totalExp,
                 amountColor: AppColors.oceanBlueButton,
                 icon: 'assets/Expenses.png',
@@ -73,7 +73,7 @@ class BalanceRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: CustomText(
-                text: "30%",
+                text: '30%',
                 style: AppStyles.regular12.copyWith(
                   color: AppColors.backgroundColor,
                 ),
@@ -88,7 +88,7 @@ class BalanceRow extends StatelessWidget {
                     horizontal: 16.w,
                   ),
                   child: CustomText(
-                    text: "\$20,000.00",
+                    text: '\$20,000.00',
                     style: AppStyles.medium13,
                   ),
                 ),

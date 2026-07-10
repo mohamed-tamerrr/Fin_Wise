@@ -1,5 +1,5 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
-import 'package:fin_wise/features/home/widgets/balanced_row.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

@@ -110,6 +110,7 @@ class CustomCard extends StatelessWidget {
 
 class CardStatRow extends StatelessWidget {
   const CardStatRow({
+    super.key,
     required this.iconPath,
     required this.label,
     required this.amount,

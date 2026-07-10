@@ -6,13 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class CategoryTransactions extends StatelessWidget {
-  final String title;
-  final String time;
-  final String type;
-  final String amount;
-  final String iconName;
-  final Color? amountColor;
-
   const CategoryTransactions({
     super.key,
     required this.title,
@@ -22,10 +15,16 @@ class CategoryTransactions extends StatelessWidget {
     required this.iconName,
     this.amountColor,
   });
+  final String title;
+  final String time;
+  final String type;
+  final String amount;
+  final String iconName;
+  final Color? amountColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       // padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -53,7 +52,7 @@ class CategoryTransactions extends StatelessWidget {
             ),
           ),
 
-          Spacer(),
+          const Spacer(),
 
           // expenses
           CustomText(

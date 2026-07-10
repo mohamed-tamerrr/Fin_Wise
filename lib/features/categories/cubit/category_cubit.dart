@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:fin_wise/features/categories/data/models/category_model.dart';
 import 'package:fin_wise/features/categories/data/repos/category_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 part 'category_state.dart';
 
 class CategoryCubit extends Cubit<CategoryState> {

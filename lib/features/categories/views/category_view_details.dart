@@ -69,8 +69,8 @@ class CategoryViewDetails extends StatelessWidget {
                       horizontal: 20.w,
                     ),
                     child: const BalanceRow(
-                      totalBalance: "\$7,783.00",
-                      totalExp: "-\$1,187.40",
+                      totalBalance: '\$7,783.00',
+                      totalExp: '-\$1,187.40',
                     ),
                   ),
                 ),
@@ -90,7 +90,7 @@ class CategoryViewDetails extends StatelessWidget {
                         top: Radius.circular(60.r),
                       ),
                     ),
-                    child: Column(
+                    child: const Column(
                       crossAxisAlignment:
                           CrossAxisAlignment.start,
                       children: [DateRow()],

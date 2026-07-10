@@ -60,8 +60,8 @@ class Chart extends StatelessWidget {
             checkToShowHorizontalLine: (value) => true,
             drawVerticalLine: false,
             horizontalInterval: 5000,
-            getDrawingHorizontalLine: (value) => FlLine(
-              color: const Color(0xff6DB6FE),
+            getDrawingHorizontalLine: (value) => const FlLine(
+              color: Color(0xff6DB6FE),
               strokeWidth: 1,
               dashArray: [3, 4],
             ),

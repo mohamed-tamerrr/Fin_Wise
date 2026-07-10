@@ -12,7 +12,7 @@ class AnalysisTabs extends StatefulWidget {
 }
 
 class _AnalysisTabsState extends State<AnalysisTabs> {
-  final tabs = ["Daily", "Weekly", "Monthly", "Year"];
+  final tabs = ['Daily', 'Weekly', 'Monthly', 'Year'];
   int selected = 0;
   @override
   Widget build(BuildContext context) {

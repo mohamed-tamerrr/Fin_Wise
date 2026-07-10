@@ -51,7 +51,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       backgroundColor: AppColors.primary,
       body: Column(
         children: [
-          Gap(123),
+          const Gap(123),
           // Header title area
           Expanded(
             flex: 2,
@@ -86,7 +86,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
           ),
         ),
-        Gap(60),
+        const Gap(60),
 
         // ── White card area ──
         Expanded(
@@ -95,7 +95,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.backgroundColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(60),
                 topRight: Radius.circular(60),
               ),

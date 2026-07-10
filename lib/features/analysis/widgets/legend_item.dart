@@ -6,9 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class LegendItem extends StatelessWidget {
+  const LegendItem({
+    super.key,
+    required this.color,
+    required this.label,
+  });
   final Color color;
   final String label;
-  const LegendItem({required this.color, required this.label});
 
   @override
   Widget build(BuildContext context) {

@@ -5,11 +5,11 @@ sealed class TransactionState {}
 class TransactionLoading extends TransactionState {}
 
 class TransactionSuccess extends TransactionState {
-  final List<TransactionModel> transactions;
   TransactionSuccess(this.transactions);
+  final List<TransactionModel> transactions;
 }
 
 class TransactionFailure extends TransactionState {
-  final String errorMessage;
   TransactionFailure(this.errorMessage);
+  final String errorMessage;
 }

@@ -106,7 +106,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                             CrossAxisAlignment.start,
                         children: [
                           /// Date
-                          FieldLabel(label: 'Date'),
+                          const FieldLabel(label: 'Date'),
 
                           Gap(10.h),
 
@@ -118,7 +118,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                           Gap(24.h),
 
                           /// Amount
-                          FieldLabel(label: 'Amount'),
+                          const FieldLabel(label: 'Amount'),
 
                           Gap(10.h),
 
@@ -131,7 +131,9 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                           Gap(24.h),
 
                           /// Expense Title
-                          FieldLabel(label: 'Expense Title'),
+                          const FieldLabel(
+                            label: 'Expense Title',
+                          ),
 
                           Gap(10.h),
 

@@ -12,7 +12,9 @@ class DateRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomText(text: 'April', style: AppStyles.medium15),
-        CustomIconButton(icon: Icons.calendar_month_outlined),
+        const CustomIconButton(
+          icon: Icons.calendar_month_outlined,
+        ),
       ],
     );
   }

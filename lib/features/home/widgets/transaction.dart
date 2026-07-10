@@ -5,13 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class Transaction extends StatelessWidget {
-  final String title;
-  final String time;
-  final String type;
-  final String amount;
-  final String iconPath;
-  final Color? amountColor;
-
   const Transaction({
     super.key,
     required this.title,
@@ -21,10 +14,16 @@ class Transaction extends StatelessWidget {
     required this.iconPath,
     this.amountColor,
   });
+  final String title;
+  final String time;
+  final String type;
+  final String amount;
+  final String iconPath;
+  final Color? amountColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       // padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(

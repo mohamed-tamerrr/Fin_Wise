@@ -12,7 +12,7 @@ class HomeTabs extends StatefulWidget {
 }
 
 class _HomeTabsState extends State<HomeTabs> {
-  final tabs = ["Daily", "Weekly", "Monthly"];
+  final tabs = ['Daily', 'Weekly', 'Monthly'];
   int selected = 0;
 
   @override

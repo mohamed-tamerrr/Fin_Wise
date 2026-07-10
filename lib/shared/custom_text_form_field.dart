@@ -41,7 +41,7 @@ class _CustomTextFormFieldState
       cursorColor: AppColors.primary,
       cursorHeight: 20,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: 24,
           vertical: 16,
         ),
@@ -61,11 +61,11 @@ class _CustomTextFormFieldState
             : null,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         filled: true,
         fillColor: AppColors.secondary,

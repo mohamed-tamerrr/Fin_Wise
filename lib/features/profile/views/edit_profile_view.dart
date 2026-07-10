@@ -129,7 +129,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                             ),
                             Gap(20.h),
 
-                            _FieldLabel(label: 'Username'),
+                            const _FieldLabel(label: 'Username'),
                             Gap(8.h),
                             CustomTextFormField(
                               hintText: 'John Smith',
@@ -138,7 +138,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                             ),
                             Gap(20.h),
 
-                            _FieldLabel(label: 'Phone'),
+                            const _FieldLabel(label: 'Phone'),
                             Gap(8.h),
                             CustomTextFormField(
                               hintText: '+44 555 5555 55',
@@ -147,7 +147,9 @@ class _EditProfileViewState extends State<EditProfileView> {
                             ),
                             Gap(20.h),
 
-                            _FieldLabel(label: 'Email Address'),
+                            const _FieldLabel(
+                              label: 'Email Address',
+                            ),
                             Gap(8.h),
                             CustomTextFormField(
                               hintText: 'example@example.com',
@@ -170,7 +172,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                                 ),
                                 Switch(
                                   value: _pushNotifications,
-                                  activeColor: AppColors.primary,
+                                  activeThumbColor:
+                                      AppColors.primary,
                                   onChanged: (value) {
                                     setState(() {
                                       _pushNotifications = value;
@@ -193,7 +196,9 @@ class _EditProfileViewState extends State<EditProfileView> {
                                 ),
                                 Switch(
                                   value: _darkTheme,
-                                  activeColor: AppColors.primary,
+                                  activeThumbColor:
+                                      AppColors.primary,
+
                                   onChanged: (value) {
                                     setState(() {
                                       _darkTheme = value;
@@ -209,9 +214,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               width: double.infinity,
                               onTap: () {
                                 if (_formKey.currentState!
-                                    .validate()) {
-                                  // TODO: call update profile logic
-                                }
+                                    .validate()) {}
                               },
                               textColor: Colors.white,
                               textStyle: AppStyles.semiBold20

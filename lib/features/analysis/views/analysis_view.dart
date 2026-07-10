@@ -37,15 +37,15 @@ class AnalysisView extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.white.withValues(alpha: .2),
                   ),
-                  child: Icon(Icons.notifications),
+                  child: const Icon(Icons.notifications),
                 ),
               ],
             ),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: const BalanceRow(
-                totalBalance: "\$7,783.00",
-                totalExp: "-\$1,187.40",
+                totalBalance: '\$7,783.00',
+                totalExp: '-\$1,187.40',
               ),
             ),
           ),
@@ -67,9 +67,9 @@ class AnalysisView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AnalysisTabs(),
+                  const AnalysisTabs(),
                   Gap(30.h),
-                  IncomeExpenseChart(),
+                  const IncomeExpenseChart(),
                   Gap(30.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -77,12 +77,12 @@ class AnalysisView extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        MoneyInfo(
+                        const MoneyInfo(
                           image: 'assets/Income.png',
                           title: 'Income',
                           amount: '\$4,120.00',
                         ),
-                        Spacer(),
+                        const Spacer(),
                         MoneyInfo(
                           image: 'assets/Expenses.png',
                           title: 'Expense',
@@ -100,13 +100,13 @@ class AnalysisView extends StatelessWidget {
                   Gap(15.h),
                   Row(
                     children: [
-                      TargetItem(
+                      const TargetItem(
                         title: 'Travel',
                         value: .3,
                         percentage: '30%',
                       ),
                       Gap(20.w),
-                      TargetItem(
+                      const TargetItem(
                         title: 'Car',
                         value: .5,
                         percentage: '50%',

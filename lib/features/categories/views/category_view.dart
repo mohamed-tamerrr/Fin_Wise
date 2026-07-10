@@ -2,7 +2,6 @@ import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_router.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
 import 'package:fin_wise/features/categories/cubit/category_cubit.dart';
-import 'package:fin_wise/features/categories/data/models/category_view_model.dart';
 import 'package:fin_wise/features/categories/widgets/category_card.dart';
 import 'package:fin_wise/features/home/widgets/balanced_row.dart';
 import 'package:fin_wise/shared/custom_app_bar.dart';
@@ -30,7 +29,7 @@ class CategoryView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: "Categories",
+                      text: 'Categories',
                       style: AppStyles.semiBold20,
                     ),
                   ],
@@ -49,8 +48,8 @@ class CategoryView extends StatelessWidget {
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: const BalanceRow(
-                totalBalance: "\$7,783.00",
-                totalExp: "-\$1,187.40",
+                totalBalance: '\$7,783.00',
+                totalExp: '-\$1,187.40',
               ),
             ),
           ),

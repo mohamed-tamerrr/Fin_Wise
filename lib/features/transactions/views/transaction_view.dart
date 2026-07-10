@@ -1,6 +1,6 @@
 import 'package:fin_wise/core/utils/app_colors.dart';
 import 'package:fin_wise/core/utils/app_styles.dart';
-import 'package:fin_wise/features/analysis/widgets/icon_button.dart';
+
 import 'package:fin_wise/features/home/widgets/transaction.dart';
 import 'package:fin_wise/features/transactions/widgets/data_row.dart';
 import 'package:fin_wise/features/transactions/widgets/income_expense_selection.dart';
@@ -36,7 +36,7 @@ class TransactionView extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.white.withValues(alpha: .2),
                   ),
-                  child: Icon(Icons.notifications),
+                  child: const Icon(Icons.notifications),
                 ),
               ],
             ),
@@ -68,7 +68,7 @@ class TransactionView extends StatelessWidget {
                   ),
                 ),
                 Gap(15.h),
-                IncomeExpenseSelection(),
+                const IncomeExpenseSelection(),
               ],
             ),
           ),
@@ -88,7 +88,7 @@ class TransactionView extends StatelessWidget {
                   top: Radius.circular(60.r),
                 ),
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [DateRow()],
               ),
@@ -108,8 +108,8 @@ class TransactionView extends StatelessWidget {
               ),
               sliver: SliverList.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                itemBuilder: (context, index) => const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
                   child: Transaction(
                     iconPath: 'assets/Icon Salary.png',
                     title: 'Salary',

@@ -17,7 +17,7 @@ class LaunchView extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Gap(220),
+            const Gap(220),
             SvgPicture.asset(
               'assets/splash/logo.svg',
               width: 200,
@@ -35,7 +35,7 @@ class LaunchView extends StatelessWidget {
               ),
             ),
             const Gap(3),
-            CustomText(
+            const CustomText(
               textAlign: TextAlign.center,
               text:
                   'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod. ',
@@ -44,7 +44,7 @@ class LaunchView extends StatelessWidget {
             CustomButton(
               onTap: () => context.push(AppRouter.loginView),
               text: 'Log In',
-              textColor: Color(0xff093030),
+              textColor: const Color(0xff093030),
               width: 200,
               color: AppColors.primary,
             ),
@@ -54,7 +54,7 @@ class LaunchView extends StatelessWidget {
               text: 'Sign Up',
               width: 200,
               color: AppColors.secondary,
-              textColor: Color(0xff0E3E3E),
+              textColor: const Color(0xff0E3E3E),
             ),
           ],
         ),

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DotsIndicator extends StatelessWidget {
-  final int count;
-  final int current;
-  final Color activeColor;
-
   const DotsIndicator({
     super.key,
     required this.count,
     required this.current,
     required this.activeColor,
   });
+  final int count;
+  final int current;
+  final Color activeColor;
 
   @override
   Widget build(BuildContext context) {

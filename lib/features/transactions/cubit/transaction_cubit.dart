@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:fin_wise/features/transactions/cubit/transaction_state.dart';
 import 'package:fin_wise/features/transactions/data/models/transaction_model.dart';
 import 'package:fin_wise/features/transactions/data/repo/transaction_repo.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionCubit extends Cubit<TransactionState> {
+  TransactionCubit(this.repo) : super(TransactionLoading());
+
   final TransactionRepo repo;
   StreamSubscription<List<TransactionModel>>? _sub;
-
-  TransactionCubit(this.repo) : super(TransactionLoading());
 
   void watchAll() {
     _sub?.cancel();

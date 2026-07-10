@@ -54,13 +54,16 @@ class _LoginViewState extends State<LoginView> {
                         const Gap(60),
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.all(36),
+                            padding: const EdgeInsets.all(36),
                             decoration: BoxDecoration(
                               color: AppColors.backgroundColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(60),
-                                topRight: Radius.circular(60),
-                              ),
+                              borderRadius:
+                                  const BorderRadius.only(
+                                    topLeft: Radius.circular(60),
+                                    topRight: Radius.circular(
+                                      60,
+                                    ),
+                                  ),
                             ),
                             child: Column(
                               // crossAxisAlignment:
@@ -70,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
 
                                 Row(
                                   children: [
-                                    Gap(15),
+                                    const Gap(15),
                                     CustomText(
                                       text: 'Username or email',
                                       fontSize: 15,
@@ -123,7 +126,7 @@ class _LoginViewState extends State<LoginView> {
                                   },
                                 ),
                                 const Gap(20),
-                                CustomText(
+                                const CustomText(
                                   text: 'Forgot Password?',
                                 ),
                                 const Gap(14),

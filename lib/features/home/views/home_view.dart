@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: "Hi, Welcome Back",
+                      text: 'Hi, Welcome Back',
                       style: AppStyles.semiBold20,
                     ),
                   ],
@@ -47,8 +47,8 @@ class HomeView extends StatelessWidget {
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: const BalanceRow(
-                totalBalance: "\$7,783.00",
-                totalExp: "-\$1,187.40",
+                totalBalance: '\$7,783.00',
+                totalExp: '-\$1,187.40',
               ),
             ),
           ),
@@ -92,8 +92,8 @@ class HomeView extends StatelessWidget {
               ),
               sliver: SliverList.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                itemBuilder: (context, index) => const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
                   child: Transaction(
                     iconPath: 'assets/Icon Salary.png',
                     title: 'Salary',

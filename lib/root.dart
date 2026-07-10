@@ -14,7 +14,7 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  final List<Widget> screens = [
+  final List<Widget> screens = const [
     HomeView(),
     AnalysisView(),
     TransactionView(),
@@ -115,17 +115,17 @@ class _RootState extends State<Root> {
 }
 
 class NavItem extends StatelessWidget {
-  final IconData icon;
-  final int index;
-  final int current;
-  final void Function(int) onTap;
-
   const NavItem({
+    super.key,
     required this.icon,
     required this.index,
     required this.current,
     required this.onTap,
   });
+  final IconData icon;
+  final int index;
+  final int current;
+  final void Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {

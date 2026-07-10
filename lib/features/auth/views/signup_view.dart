@@ -59,13 +59,16 @@ class _SignupViewState extends State<SignupView> {
                         const Gap(60),
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.all(36),
+                            padding: const EdgeInsets.all(36),
                             decoration: BoxDecoration(
                               color: AppColors.backgroundColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(60),
-                                topRight: Radius.circular(60),
-                              ),
+                              borderRadius:
+                                  const BorderRadius.only(
+                                    topLeft: Radius.circular(60),
+                                    topRight: Radius.circular(
+                                      60,
+                                    ),
+                                  ),
                             ),
                             child: Column(
                               // crossAxisAlignment:
@@ -75,7 +78,7 @@ class _SignupViewState extends State<SignupView> {
 
                                 Row(
                                   children: [
-                                    Gap(15),
+                                    const Gap(15),
                                     CustomText(
                                       text: 'Full Name',
                                       fontSize: 15,
@@ -167,7 +170,7 @@ class _SignupViewState extends State<SignupView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.center,
                                   children: [
-                                    CustomText(
+                                    const CustomText(
                                       fontSize: 13,
                                       text:
                                           'Already have an account? ',
@@ -178,7 +181,7 @@ class _SignupViewState extends State<SignupView> {
                                           .pushReplacement(
                                             AppRouter.loginView,
                                           ),
-                                      child: CustomText(
+                                      child: const CustomText(
                                         color: Colors.blueAccent,
                                         text: 'Log In',
                                         fontSize: 13,
