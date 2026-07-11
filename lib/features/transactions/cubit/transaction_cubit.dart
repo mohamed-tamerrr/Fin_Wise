@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import '../data/models/transaction_details_model.dart';
 import 'transaction_state.dart';
 import '../data/models/transaction_model.dart';
 import '../data/repo/transaction_repo.dart';
@@ -10,19 +11,23 @@ class TransactionCubit extends Cubit<TransactionState> {
   TransactionCubit(this.repo) : super(TransactionLoading());
 
   final TransactionRepo repo;
-  StreamSubscription<List<TransactionModel>>? _sub;
+  StreamSubscription<List<TransactionDetailsModel>>? _sub;
 
   void watchAll() {
     _sub?.cancel();
     emit(TransactionLoading());
-    _sub = repo.watchAllTransactions().listen(
-      (list) {
-        emit(TransactionSuccess(list));
-      },
-      onError: (e) {
-        emit(TransactionFailure(e.toString()));
-      },
+    _sub = repo.watchAllTransactionsWithCategory().listen(
+      (list) => emit(TransactionSuccess(list)),
+      onError: (e) => emit(TransactionFailure(e.toString())),
     );
+  }
+
+  Future<void> addTransaction(TransactionModel transaction) async {
+    try {
+      await repo.saveTransaction(transaction);
+    } catch (e) {
+      emit(TransactionFailure(e.toString()));
+    }
   }
 
   void watchByCategory(int categoryId) {
@@ -34,16 +39,6 @@ class TransactionCubit extends Cubit<TransactionState> {
           (list) => emit(TransactionSuccess(list)),
           onError: (e) => emit(TransactionFailure(e.toString())),
         );
-  }
-
-  Future<void> addTransaction(
-    TransactionModel transaction,
-  ) async {
-    try {
-      await repo.saveTransaction(transaction);
-    } catch (e) {
-      emit(TransactionFailure(e.toString()));
-    }
   }
 
   @override

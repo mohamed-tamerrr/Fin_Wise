@@ -60,9 +60,7 @@ abstract class AppRouter {
         builder: (context, state) {
           final category = state.extra as CategoryModel;
           return BlocProvider(
-            create: (context) =>
-                TransactionCubit(TransactionRepo())
-                  ..watchByCategory(category.id),
+            create: (context) => TransactionCubit(TransactionRepo())..watchByCategory(category.id),
             child: CategoryViewDetails(category: category),
           );
         },

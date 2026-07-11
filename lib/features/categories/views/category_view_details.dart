@@ -79,11 +79,11 @@ class CategoryViewDetails extends StatelessWidget {
                     sliver: BlocBuilder<TransactionCubit, TransactionState>(
                       builder: (context, state) {
                         if (state is TransactionLoading) {
-                          return const CategoryViewDetailsLoading();
+                          return const TransactionsLoadingWidget();
                         }
 
                         if (state is TransactionFailure) {
-                          return CategoryViewDetailsFailure(
+                          return TransactionsFailureWidget(
                             message: state.errorMessage,
                           );
                         }
@@ -96,8 +96,8 @@ class CategoryViewDetails extends StatelessWidget {
                           }
 
                           return CategoryViewDetailsSuccess(
-                            categoryTransactions: categoryTransactions,
                             category: category,
+                            transactions: categoryTransactions,
                           );
                         }
 

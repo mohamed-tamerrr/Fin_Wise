@@ -1,5 +1,13 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
+import '../../../shared/color_filling.dart';
+import '../../categories/widgets/category_view_details_failure.dart';
+import '../../categories/widgets/category_view_details_loading.dart';
+import '../../categories/widgets/no_transactions_widget.dart';
+import '../../transactions/cubit/transaction_cubit.dart';
+import '../../transactions/cubit/transaction_state.dart';
 import '../widgets/balanced_row.dart';
 import '../widgets/custom_card.dart';
 import '../widgets/home_tabs.dart';
@@ -90,25 +98,45 @@ class HomeView extends StatelessWidget {
                 right: 36,
                 bottom: 36,
               ),
-              sliver: SliverList.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => const Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Transaction(
-                    iconPath: 'assets/Icon Salary.png',
-                    title: 'Salary',
-                    time: '18:27 - April 30',
-                    type: 'Monthly',
-                    amount: '\$4,000.00',
-                  ),
-                ),
+              sliver: BlocBuilder<TransactionCubit, TransactionState>(
+                builder: (context, state) {
+                  if (state is TransactionLoading) {
+                    return const TransactionsLoadingWidget();
+                  }
+
+                  if (state is TransactionFailure) {
+                    return TransactionsFailureWidget(
+                      message: state.errorMessage,
+                    );
+                  }
+
+                  if (state is TransactionSuccess) {
+                    final transactions = state.transactions;
+
+                    if (transactions.isEmpty) {
+                      return const NoTransActionsWidget();
+                    }
+
+                    return SliverList.builder(
+                      itemCount: transactions.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: Transaction(
+                          transaction: transactions[index].transaction,
+                          category: transactions[index].category,
+                        ),
+                      ),
+                    );
+                  }
+
+                  return const SliverToBoxAdapter(
+                    child: SizedBox(),
+                  );
+                },
               ),
             ),
           ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: ColoredBox(color: AppColors.backgroundColor),
-          ),
+          const ColorFilling(),
         ],
       ),
     );

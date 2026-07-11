@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CategoryViewDetailsFailure extends StatelessWidget {
-  const CategoryViewDetailsFailure({
+class TransactionsFailureWidget extends StatelessWidget {
+  const TransactionsFailureWidget({
     super.key,
     required this.message,
   });

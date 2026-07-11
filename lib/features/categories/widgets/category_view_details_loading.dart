@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CategoryViewDetailsLoading extends StatelessWidget {
-  const CategoryViewDetailsLoading({super.key});
+class TransactionsLoadingWidget extends StatelessWidget {
+  const TransactionsLoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
