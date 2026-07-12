@@ -4,6 +4,7 @@ import '../models/transaction_model.dart';
 import 'package:isar/isar.dart';
 import '../models/transaction_details_model.dart';
 
+//* Avoid N + 1 problem to enhance your perfromance
 class TransactionRepo {
   /// Add / Update Transaction
   Future<void> saveTransaction(
@@ -14,15 +15,15 @@ class TransactionRepo {
     });
   }
 
-  /// Get Transactions
+  /// Get Transactions 2 database queries total (batched), regardless of list size
   Future<List<TransactionDetailsModel>> getTransactions() async {
-    final List<TransactionModel> transations = await IsarService.isar.transactionModels.where().findAll();
-    List<TransactionDetailsModel> result = [];
-    for (final t in transations) {
-      final category = await IsarService.isar.categoryModels.get(t.categoryId);
-      result.add(TransactionDetailsModel(transaction: t, category: category));
-    }
-    return result;
+    final List<TransactionModel> transactions = await IsarService.isar.transactionModels.where().findAll();
+    final categoriesId = transactions.map((e) => e.categoryId).toSet().toList();
+    final categories = await IsarService.isar.categoryModels.getAll(categoriesId);
+    final categoryMap = {for (final c in categories.whereType<CategoryModel>()) c.id: c};
+    return transactions
+        .map((e) => TransactionDetailsModel(transaction: e, category: categoryMap[e.categoryId]))
+        .toList();
   }
 
   /// Get Transaction By ID
@@ -38,7 +39,7 @@ class TransactionRepo {
   }
 
   Stream<List<TransactionModel>> watchAllTransactions() {
-    return IsarService.isar.transactionModels.where().watch(
+    return IsarService.isar.transactionModels.where().sortByDateDesc().watch(
       fireImmediately: true,
     );
   }
@@ -48,8 +49,7 @@ class TransactionRepo {
       final categoryIds = transactions.map((t) => t.categoryId).toSet().toList();
       final categories = await IsarService.isar.categoryModels.getAll(categoryIds);
       final categoryMap = {
-        for (final c in categories)
-          if (c != null) c.id: c,
+        for (final c in categories.whereType<CategoryModel>()) c.id: c,
       };
 
       return transactions

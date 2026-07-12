@@ -1,7 +1,6 @@
 import '../../transactions/data/models/transaction_details_model.dart';
 import '../data/models/category_model.dart';
 import 'category_transactions.dart';
-import '../../transactions/data/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

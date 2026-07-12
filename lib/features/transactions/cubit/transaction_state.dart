@@ -1,4 +1,3 @@
-import '../data/models/transaction_model.dart';
 import '../data/models/transaction_details_model.dart';
 
 sealed class TransactionState {}
