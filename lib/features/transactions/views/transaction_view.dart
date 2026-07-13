@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 
+import '../../../shared/transaction_dismissible.dart';
 import '../../categories/widgets/category_view_details_failure.dart';
 import '../../categories/widgets/category_view_details_loading.dart';
 import '../../categories/widgets/no_transactions_widget.dart';
 import '../../home/widgets/transaction.dart';
 import '../cubit/filtered_tranactions_cubit.dart';
 
+import '../cubit/transaction_cubit.dart';
 import '../cubit/transaction_state.dart';
 import '../data/repo/transaction_repo.dart';
 import '../widgets/data_row.dart';
@@ -143,9 +145,12 @@ class TransactionView extends StatelessWidget {
 
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 20),
-                            child: Transaction(
+                            child: TransactionDismissible(
                               transaction: item.transaction,
-                              category: item.category,
+                              child: Transaction(
+                                transaction: item.transaction,
+                                category: item.category,
+                              ),
                             ),
                           );
                         },

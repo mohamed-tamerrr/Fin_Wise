@@ -1,4 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../shared/transaction_dismissible.dart';
+import '../../transactions/cubit/transaction_cubit.dart';
 import '../../transactions/data/models/transaction_details_model.dart';
+import '../../transactions/data/models/transaction_model.dart';
 import '../data/models/category_model.dart';
 import 'category_transactions.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +27,20 @@ class CategoryViewDetailsSuccess extends StatelessWidget {
         final item = transactions[index];
         final transaction = item.transaction;
         final category = item.category;
+
         return Padding(
           padding: const EdgeInsets.only(bottom: 20),
-          child: CategoryTransactions(
-            iconName: category!.iconName, // same category = same icon
-            title: transaction.title,
-            time: DateFormat(
-              'HH:mm - MMMM d',
-            ).format(transaction.date),
-            type: category.name,
-            amount: '-\$${transaction.amount.toStringAsFixed(2)}',
+          child: TransactionDismissible(
+            transaction: transaction,
+            child: CategoryTransactions(
+              iconName: category!.iconName,
+              title: transaction.title,
+              time: DateFormat(
+                'HH:mm - MMMM d',
+              ).format(transaction.date),
+              type: category.name,
+              amount: '-\$${transaction.amount.toStringAsFixed(2)}',
+            ),
           ),
         );
       },

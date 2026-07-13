@@ -119,13 +119,17 @@ class HomeView extends StatelessWidget {
 
                     return SliverList.builder(
                       itemCount: transactions.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Transaction(
-                          transaction: transactions[index].transaction,
-                          category: transactions[index].category,
-                        ),
-                      ),
+                      itemBuilder: (context, index) {
+                        final item = transactions[index];
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Transaction(
+                            transaction: item.transaction,
+                            category: item.category,
+                          ),
+                        );
+                      },
                     );
                   }
 

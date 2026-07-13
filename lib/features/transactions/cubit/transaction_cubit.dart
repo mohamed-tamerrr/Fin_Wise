@@ -41,6 +41,15 @@ class TransactionCubit extends Cubit<TransactionState> {
         );
   }
 
+  /// Delete Transaction
+  Future<void> deleteTransaction(int id) async {
+    try {
+      await transactionRepo.deleteTransaction(id);
+    } catch (e) {
+      emit(TransactionFailure(e.toString()));
+    }
+  }
+
   @override
   Future<void> close() {
     _sub?.cancel();
