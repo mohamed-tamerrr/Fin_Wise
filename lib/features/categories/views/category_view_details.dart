@@ -31,6 +31,7 @@ class CategoryViewDetails extends StatelessWidget {
           ColoredBox(
             color: AppColors.primary,
             child: CustomScrollView(
+              
               slivers: [
                 CustomAppBar(
                   topRow: TopAppBar(title: category.name),

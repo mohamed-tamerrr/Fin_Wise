@@ -25,7 +25,7 @@ class TransactionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => TransactionsFilterCubit(TransactionRepo())..watchAll(),
+      create: (_) => TransactionsFilterCubit(context.read<TransactionRepo>())..watchAll(),
       child: ColoredBox(
         color: AppColors.primary,
         child: CustomScrollView(

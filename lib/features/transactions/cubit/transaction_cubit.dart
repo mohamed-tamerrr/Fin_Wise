@@ -8,15 +8,15 @@ import '../data/repo/transaction_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionCubit extends Cubit<TransactionState> {
-  TransactionCubit(this.repo) : super(TransactionLoading());
+  TransactionCubit({required this.transactionRepo}) : super(TransactionLoading());
 
-  final TransactionRepo repo;
+  final TransactionRepo transactionRepo;
   StreamSubscription<List<TransactionDetailsModel>>? _sub;
 
   void watchAll() {
     _sub?.cancel();
     emit(TransactionLoading());
-    _sub = repo.watchAllTransactionsWithCategory().listen(
+    _sub = transactionRepo.watchAllTransactionsWithCategory().listen(
       (list) => emit(TransactionSuccess(list)),
       onError: (e) => emit(TransactionFailure(e.toString())),
     );
@@ -24,7 +24,7 @@ class TransactionCubit extends Cubit<TransactionState> {
 
   Future<void> addTransaction(TransactionModel transaction) async {
     try {
-      await repo.saveTransaction(transaction);
+      await transactionRepo.saveTransaction(transaction);
     } catch (e) {
       emit(TransactionFailure(e.toString()));
     }
@@ -33,7 +33,7 @@ class TransactionCubit extends Cubit<TransactionState> {
   void watchByCategory(int categoryId) {
     _sub?.cancel();
     emit(TransactionLoading());
-    _sub = repo
+    _sub = transactionRepo
         .watchByCategory(categoryId)
         .listen(
           (list) => emit(TransactionSuccess(list)),
