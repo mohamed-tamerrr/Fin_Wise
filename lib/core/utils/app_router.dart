@@ -1,6 +1,7 @@
 import '../../features/auth/views/login_view.dart';
 import '../../features/auth/views/signup_view.dart';
 import '../../features/categories/data/models/category_model.dart';
+import '../../features/categories/views/add_category.dart';
 import '../../features/categories/views/add_expense_view.dart';
 import '../../features/categories/views/category_view.dart';
 import '../../features/categories/views/category_view_details.dart';
@@ -28,6 +29,7 @@ abstract class AppRouter {
   static const settingsProfileView = '/settings-profile';
   static const securityProfileView = '/security-profile';
   static const helpProfileView = '/help-profile';
+  static const addCategory = '/add-category';
 
   static final router = GoRouter(
     routes: [
@@ -77,6 +79,10 @@ abstract class AppRouter {
       GoRoute(
         path: editProfileView,
         builder: (context, state) => const EditProfileView(),
+      ),
+      GoRoute(
+        path: addCategory,
+        builder: (context, state) => const AddCategory(),
       ),
     ],
   );

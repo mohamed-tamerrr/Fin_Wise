@@ -14,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final isar = await IsarService.init();
   final categoryRepository = CategoryRepository(isar);
-  await categoryRepository.seedDefaultCategoriesIfNeeded();
+  // await categoryRepository.seedDefaultCategoriesIfNeeded();
   runApp(
     FinWise(
       isar: isar,

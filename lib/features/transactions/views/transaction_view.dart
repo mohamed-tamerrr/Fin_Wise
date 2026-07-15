@@ -10,7 +10,6 @@ import '../../categories/widgets/no_transactions_widget.dart';
 import '../../home/widgets/transaction.dart';
 import '../cubit/filtered_tranactions_cubit.dart';
 
-import '../cubit/transaction_cubit.dart';
 import '../cubit/transaction_state.dart';
 import '../data/repo/transaction_repo.dart';
 import '../widgets/data_row.dart';

@@ -1,7 +1,7 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 import '../data/models/category_model.dart';
-import '../widgets/category_view_details_appbar.dart';
+import '../widgets/add_expense_appbar.dart';
 import '../widgets/date_picker_field.dart';
 import '../widgets/field_label.dart';
 import '../../transactions/cubit/transaction_cubit.dart';

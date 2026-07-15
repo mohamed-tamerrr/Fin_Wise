@@ -19,4 +19,22 @@ class CategoryCubit extends Cubit<CategoryState> {
       emit(CategoryFailure(errorMessage: e.toString()));
     }
   }
+
+  Future<void> addCategory(CategoryModel category) async {
+    try {
+      await categoryRepo.saveCategory(category);
+      await getCategories();
+    } catch (e) {
+      emit(CategoryFailure(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> deleteCategory(int id) async {
+    try {
+      await categoryRepo.deleteCategory(id);
+      await getCategories();
+    } catch (e) {
+      emit(CategoryFailure(errorMessage: e.toString()));
+    }
+  }
 }

@@ -2,6 +2,8 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../../shared/color_filling.dart';
+import '../../../shared/custom_text.dart';
+import '../cubit/category_cubit.dart';
 import '../data/models/category_model.dart';
 import '../widgets/category_view_details_appbar.dart';
 import '../widgets/category_view_details_failure.dart';
@@ -23,6 +25,96 @@ class CategoryViewDetails extends StatelessWidget {
   const CategoryViewDetails({super.key, required this.category});
   final CategoryModel category;
 
+  Future<void> confirmDelete(BuildContext context) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.all(24.r),
+          decoration: BoxDecoration(
+            color: AppColors.backgroundColor,
+            borderRadius: BorderRadius.circular(24.r),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.all(14.r),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.red.withValues(alpha: .1),
+                ),
+                child: Icon(
+                  Icons.delete_outline,
+                  color: Colors.red,
+                  size: 32.sp,
+                ),
+              ),
+              SizedBox(height: 16.h),
+              CustomText(
+                text: 'Delete Category',
+                style: AppStyles.semiBold20,
+              ),
+              SizedBox(height: 8.h),
+              CustomText(
+                text: 'Are you sure you want to delete "${category.name}"? This action cannot be undone.',
+                style: AppStyles.medium15.copyWith(
+                  color: AppColors.primary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(false),
+                      style: OutlinedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                      ),
+                      child: CustomText(
+                        text: 'Cancel',
+                        style: AppStyles.medium15,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(true),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                      ),
+                      child: CustomText(
+                        text: 'Delete',
+                        style: AppStyles.medium15.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (confirmed == true && context.mounted) {
+      await context.read<CategoryCubit>().deleteCategory(category.id);
+      if (context.mounted) context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +123,12 @@ class CategoryViewDetails extends StatelessWidget {
           ColoredBox(
             color: AppColors.primary,
             child: CustomScrollView(
-              
               slivers: [
                 CustomAppBar(
-                  topRow: TopAppBar(title: category.name),
+                  topRow: CategoryViewDetailsAppBar(
+                    category: category,
+                    onTap: () => confirmDelete(context),
+                  ),
                   body: Padding(
                     padding: .symmetric(horizontal: 20.w),
                     child: const BalanceRow(

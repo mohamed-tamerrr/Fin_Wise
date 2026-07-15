@@ -16,4 +16,4 @@ class CategoryModel {
   late CategoryType type;
 }
 
-enum CategoryType { income, expense }
+enum CategoryType { income, expense, none }

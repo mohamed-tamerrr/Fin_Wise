@@ -2,6 +2,7 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
 import '../../../core/utils/app_styles.dart';
 import '../cubit/category_cubit.dart';
+import '../data/models/category_model.dart';
 import '../widgets/category_card.dart';
 import '../../home/widgets/balanced_row.dart';
 import '../../../shared/custom_app_bar.dart';
@@ -76,27 +77,38 @@ class CategoryView extends StatelessWidget {
                   }
                   if (state is CategorySuccess) {
                     return GridView.builder(
-                      physics:
-                          const NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
-                      itemCount: state.categories.length,
+                      itemCount: state.categories.length + 1,
                       shrinkWrap: true,
-                      gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 24.h,
-                            crossAxisSpacing: 16.w,
-                            childAspectRatio: 0.79,
-                          ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisSpacing: 24.h,
+                        crossAxisSpacing: 16.w,
+                        childAspectRatio: 0.79,
+                      ),
                       itemBuilder: (context, index) {
+                        if (index == state.categories.length) {
+                          // last cell -> "Add Category" card
+                          return CategoryCard(
+                            iconName: '',
+                            title: 'Add Category',
+                            onTap: () {
+                              context.push(AppRouter.addCategory);
+                            },
+                          );
+                        }
+
                         final category = state.categories[index];
                         return CategoryCard(
                           iconName: category.iconName,
                           title: category.name,
-                          onTap: () => context.push(
-                            AppRouter.categoryViewDetails,
-                            extra: category,
-                          ),
+                          onTap: () {
+                            context.push(
+                              AppRouter.categoryViewDetails,
+                              extra: category,
+                            );
+                          },
                         );
                       },
                     );
