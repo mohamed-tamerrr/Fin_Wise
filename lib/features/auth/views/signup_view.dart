@@ -1,8 +1,8 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
-import '../../../shared/custom_btn.dart';
-import '../../../shared/custom_text.dart';
-import '../../../shared/custom_text_form_field.dart';
+import '../../../shared/widgets/custom_btn.dart';
+import '../../../shared/widgets/custom_text.dart';
+import '../../../shared/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -17,10 +17,8 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _name = TextEditingController();
-  final TextEditingController _password =
-      TextEditingController();
-  final TextEditingController _confirmPassword =
-      TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -62,13 +60,12 @@ class _SignupViewState extends State<SignupView> {
                             padding: const EdgeInsets.all(36),
                             decoration: BoxDecoration(
                               color: AppColors.backgroundColor,
-                              borderRadius:
-                                  const BorderRadius.only(
-                                    topLeft: Radius.circular(60),
-                                    topRight: Radius.circular(
-                                      60,
-                                    ),
-                                  ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(60),
+                                topRight: Radius.circular(
+                                  60,
+                                ),
+                              ),
                             ),
                             child: Column(
                               // crossAxisAlignment:
@@ -83,8 +80,7 @@ class _SignupViewState extends State<SignupView> {
                                       text: 'Full Name',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w500,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ],
                                 ),
@@ -102,15 +98,13 @@ class _SignupViewState extends State<SignupView> {
                                       text: 'Email',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w600,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
                                 const Gap(8),
                                 CustomTextFormField(
-                                  hintText:
-                                      'example@example.com',
+                                  hintText: 'example@example.com',
                                   isPassword: false,
                                   controller: _email,
                                 ),
@@ -122,8 +116,7 @@ class _SignupViewState extends State<SignupView> {
                                       text: 'Password',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w600,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
@@ -141,8 +134,7 @@ class _SignupViewState extends State<SignupView> {
                                       text: 'Confirm Password',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w600,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
@@ -159,28 +151,24 @@ class _SignupViewState extends State<SignupView> {
                                   color: AppColors.primary,
                                   textColor: AppColors.textColor,
                                   onTap: () {
-                                    if (_formKey.currentState!
-                                        .validate()) {
+                                    if (_formKey.currentState!.validate()) {
                                       // Perform signup action
                                     }
                                   },
                                 ),
                                 const Gap(12),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const CustomText(
                                       fontSize: 13,
-                                      text:
-                                          'Already have an account? ',
+                                      text: 'Already have an account? ',
                                     ),
 
                                     GestureDetector(
-                                      onTap: () => context
-                                          .pushReplacement(
-                                            AppRouter.loginView,
-                                          ),
+                                      onTap: () => context.pushReplacement(
+                                        AppRouter.loginView,
+                                      ),
                                       child: const CustomText(
                                         color: Colors.blueAccent,
                                         text: 'Log In',

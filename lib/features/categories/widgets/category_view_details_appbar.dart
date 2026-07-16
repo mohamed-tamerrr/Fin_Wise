@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/utils/app_styles.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import '../data/models/category_model.dart';
 
 class CategoryViewDetailsAppBar extends StatelessWidget {

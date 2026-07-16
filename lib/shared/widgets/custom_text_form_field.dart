@@ -1,4 +1,4 @@
-import '../core/utils/app_colors.dart';
+import '../../core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -14,12 +14,10 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<CustomTextFormField> createState() =>
-      _CustomTextFormFieldState();
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
-class _CustomTextFormFieldState
-    extends State<CustomTextFormField> {
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
   late bool _isObscure;
 
   @override

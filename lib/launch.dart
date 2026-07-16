@@ -1,6 +1,6 @@
 import 'core/utils/app_colors.dart';
-import 'shared/custom_btn.dart';
-import 'shared/custom_text.dart';
+import 'shared/widgets/custom_btn.dart';
+import 'shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'core/utils/app_router.dart';
 import 'package:flutter_svg/svg.dart';
@@ -37,8 +37,7 @@ class LaunchView extends StatelessWidget {
             const Gap(3),
             const CustomText(
               textAlign: TextAlign.center,
-              text:
-                  'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod. ',
+              text: 'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod. ',
             ),
             const Gap(40),
             CustomButton(

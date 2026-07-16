@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/transaction_dismissible.dart';
+import '../../../shared/widgets/transaction_dismissible.dart';
 import '../../transactions/cubit/transaction_cubit.dart';
 import '../../transactions/data/models/transaction_details_model.dart';
 import '../../transactions/data/models/transaction_model.dart';

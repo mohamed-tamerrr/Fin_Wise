@@ -1,6 +1,6 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,9 +37,7 @@ class _HomeTabsState extends State<HomeTabs> {
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                   decoration: BoxDecoration(
-                    color: selected == index
-                        ? AppColors.primary
-                        : Colors.transparent,
+                    color: selected == index ? AppColors.primary : Colors.transparent,
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   alignment: Alignment.center,

@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'shared/summary/cubit/summary_cubit.dart';
+import 'shared/summary/data/repos/summary_repo.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final isar = await IsarService.init();
@@ -35,16 +38,25 @@ class FinWise extends StatelessWidget {
         RepositoryProvider(
           create: (context) => TransactionRepo(isar),
         ),
+
+        RepositoryProvider(
+          create: (context) => SummaryRepo(context.read<TransactionRepo>()),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => CategoryCubit(categoryRepo: categoryRepository)..getCategories(),
+            create: (context) => CategoryCubit(categoryRepo: categoryRepository)..getCategories(),
+          ),
+          BlocProvider(
+            create: (ctx) {
+              return TransactionCubit(transactionRepo: ctx.read<TransactionRepo>())..watchAll();
+            },
           ),
 
           BlocProvider(
-            create: (_) {
-              return TransactionCubit(transactionRepo: TransactionRepo(isar))..watchAll();
+            create: (ctx) {
+              return SummaryCubit(ctx.read<SummaryRepo>())..getSummary();
             },
           ),
         ],

@@ -2,7 +2,7 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
 import '../../../core/utils/app_styles.dart';
 import '../data/models/profile_menu_item.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -58,8 +58,7 @@ class ProfileView extends StatelessWidget {
                     horizontal: 30.w,
                   ),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
                         text: 'Profile',
@@ -101,8 +100,7 @@ class ProfileView extends StatelessWidget {
                         Gap(40.h),
                         Expanded(
                           child: ListView.separated(
-                            physics:
-                                const NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: menuItems.length,
                             itemBuilder: (context, index) {
                               final item = menuItems[index];
@@ -121,11 +119,9 @@ class ProfileView extends StatelessWidget {
                                 ),
                                 title: CustomText(
                                   text: item.title,
-                                  style: AppStyles.medium15
-                                      .copyWith(
-                                        color: AppColors
-                                            .lettersandIcons,
-                                      ),
+                                  style: AppStyles.medium15.copyWith(
+                                    color: AppColors.lettersandIcons,
+                                  ),
                                 ),
                               );
                             },

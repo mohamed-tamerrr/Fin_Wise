@@ -1,6 +1,6 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class FieldLabel extends StatelessWidget {

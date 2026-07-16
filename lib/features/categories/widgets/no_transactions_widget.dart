@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 
 class NoTransActionsWidget extends StatelessWidget {
   const NoTransActionsWidget({

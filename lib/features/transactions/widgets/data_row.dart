@@ -1,6 +1,6 @@
 import '../../../core/utils/app_styles.dart';
 import '../../analysis/widgets/icon_button.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class DateRow extends StatelessWidget {

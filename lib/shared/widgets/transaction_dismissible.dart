@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../features/transactions/cubit/transaction_cubit.dart';
-import '../features/transactions/data/models/transaction_model.dart';
+import '../../features/transactions/cubit/transaction_cubit.dart';
+import '../../features/transactions/data/models/transaction_model.dart';
 
 class TransactionDismissible extends StatelessWidget {
   const TransactionDismissible({

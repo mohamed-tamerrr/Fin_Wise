@@ -1,8 +1,8 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
-import '../../../shared/custom_btn.dart';
-import '../../../shared/custom_text.dart';
-import '../../../shared/custom_text_form_field.dart';
+import '../../../shared/widgets/custom_btn.dart';
+import '../../../shared/widgets/custom_text.dart';
+import '../../../shared/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -16,8 +16,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final TextEditingController _email = TextEditingController();
-  final TextEditingController _password =
-      TextEditingController();
+  final TextEditingController _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -57,13 +56,12 @@ class _LoginViewState extends State<LoginView> {
                             padding: const EdgeInsets.all(36),
                             decoration: BoxDecoration(
                               color: AppColors.backgroundColor,
-                              borderRadius:
-                                  const BorderRadius.only(
-                                    topLeft: Radius.circular(60),
-                                    topRight: Radius.circular(
-                                      60,
-                                    ),
-                                  ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(60),
+                                topRight: Radius.circular(
+                                  60,
+                                ),
+                              ),
                             ),
                             child: Column(
                               // crossAxisAlignment:
@@ -78,15 +76,13 @@ class _LoginViewState extends State<LoginView> {
                                       text: 'Username or email',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w500,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ],
                                 ),
                                 const Gap(8),
                                 CustomTextFormField(
-                                  hintText:
-                                      'example@example.com',
+                                  hintText: 'example@example.com',
                                   isPassword: false,
                                   controller: _email,
                                 ),
@@ -98,8 +94,7 @@ class _LoginViewState extends State<LoginView> {
                                       text: 'Password',
                                       fontSize: 15,
                                       color: AppColors.textColor,
-                                      fontWeight:
-                                          FontWeight.w600,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
@@ -116,8 +111,7 @@ class _LoginViewState extends State<LoginView> {
                                   color: AppColors.primary,
                                   textColor: AppColors.textColor,
                                   onTap: () {
-                                    if (_formKey.currentState!
-                                        .validate()) {
+                                    if (_formKey.currentState!.validate()) {
                                       // Perform login action
                                     }
                                     context.push(

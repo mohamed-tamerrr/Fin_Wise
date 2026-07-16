@@ -1,8 +1,8 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
-import '../../../shared/custom_btn.dart';
-import '../../../shared/custom_text.dart';
-import '../../../shared/custom_text_form_field.dart';
+import '../../../shared/widgets/custom_btn.dart';
+import '../../../shared/widgets/custom_text.dart';
+import '../../../shared/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -13,19 +13,15 @@ class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
 
   @override
-  State<EditProfileView> createState() =>
-      _EditProfileViewState();
+  State<EditProfileView> createState() => _EditProfileViewState();
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _usernameController =
-      TextEditingController(text: 'John Smith');
-  final TextEditingController _phoneController =
-      TextEditingController(text: '+44 555 5555 55');
-  final TextEditingController _emailController =
-      TextEditingController(text: 'example@example.com');
+  final TextEditingController _usernameController = TextEditingController(text: 'John Smith');
+  final TextEditingController _phoneController = TextEditingController(text: '+44 555 5555 55');
+  final TextEditingController _emailController = TextEditingController(text: 'example@example.com');
 
   bool _pushNotifications = true;
   bool _darkTheme = false;
@@ -57,8 +53,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     horizontal: 30.w,
                   ),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
                         onTap: () => context.pop(),
@@ -122,8 +117,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               child: CustomText(
                                 text: 'Account Settings',
                                 style: AppStyles.bold20.copyWith(
-                                  color:
-                                      AppColors.lettersandIcons,
+                                  color: AppColors.lettersandIcons,
                                 ),
                               ),
                             ),
@@ -159,21 +153,17 @@ class _EditProfileViewState extends State<EditProfileView> {
                             Gap(20.h),
 
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CustomText(
                                   text: 'Push Notifications',
-                                  style: AppStyles.medium15
-                                      .copyWith(
-                                        color: AppColors
-                                            .lettersandIcons,
-                                      ),
+                                  style: AppStyles.medium15.copyWith(
+                                    color: AppColors.lettersandIcons,
+                                  ),
                                 ),
                                 Switch(
                                   value: _pushNotifications,
-                                  activeThumbColor:
-                                      AppColors.primary,
+                                  activeThumbColor: AppColors.primary,
                                   onChanged: (value) {
                                     setState(() {
                                       _pushNotifications = value;
@@ -183,21 +173,17 @@ class _EditProfileViewState extends State<EditProfileView> {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CustomText(
                                   text: 'Turn Dark Theme',
-                                  style: AppStyles.medium15
-                                      .copyWith(
-                                        color: AppColors
-                                            .lettersandIcons,
-                                      ),
+                                  style: AppStyles.medium15.copyWith(
+                                    color: AppColors.lettersandIcons,
+                                  ),
                                 ),
                                 Switch(
                                   value: _darkTheme,
-                                  activeThumbColor:
-                                      AppColors.primary,
+                                  activeThumbColor: AppColors.primary,
 
                                   onChanged: (value) {
                                     setState(() {
@@ -213,12 +199,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                               text: 'Update Profile',
                               width: double.infinity,
                               onTap: () {
-                                if (_formKey.currentState!
-                                    .validate()) {}
+                                if (_formKey.currentState!.validate()) {}
                               },
                               textColor: Colors.white,
-                              textStyle: AppStyles.semiBold20
-                                  .copyWith(color: Colors.white),
+                              textStyle: AppStyles.semiBold20.copyWith(color: Colors.white),
                             ),
 
                             Gap(20.h),

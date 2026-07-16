@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 
 import '../../../core/helpers/icon_mapper.dart';
 import '../../../core/utils/app_colors.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_text.dart';
 import '../cubit/category_cubit.dart';
 import '../data/models/category_model.dart';
 import '../widgets/add_category_appbar.dart';

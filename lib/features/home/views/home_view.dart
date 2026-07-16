@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
-import '../../../shared/color_filling.dart';
+import '../../../shared/summary/cubit/summary_cubit.dart';
+import '../../../shared/widgets/color_filling.dart';
 import '../../categories/widgets/category_view_details_failure.dart';
 import '../../categories/widgets/category_view_details_loading.dart';
 import '../../categories/widgets/no_transactions_widget.dart';
@@ -12,8 +13,8 @@ import '../widgets/balanced_row.dart';
 import '../widgets/custom_card.dart';
 import '../widgets/home_tabs.dart';
 import '../widgets/transaction.dart';
-import '../../../shared/custom_app_bar.dart';
-import '../../../shared/custom_text.dart';
+import '../../../shared/widgets/custom_app_bar.dart';
+import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -54,9 +55,25 @@ class HomeView extends StatelessWidget {
             ),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: const BalanceRow(
-                totalBalance: '\$7,783.00',
-                totalExp: '-\$1,187.40',
+              child: BlocBuilder<SummaryCubit, SummaryState>(
+                builder: (context, state) {
+                  if (state is SummaryLoading) {
+                    return const BalanceRow(
+                      totalBalance: '\$7,783.00',
+                      totalExp: '-\$1,187.40',
+                    );
+                  }
+                  if (state is SummarySuccess) {
+                    return BalanceRow(
+                      totalBalance: '\$${state.summary.balance}',
+                      totalExp: '-\$${state.summary.expense.toString()}',
+                    );
+                  }
+                  return const BalanceRow(
+                    totalBalance: '\$7,783.00',
+                    totalExp: '-\$1,187.40',
+                  );
+                },
               ),
             ),
           ),
