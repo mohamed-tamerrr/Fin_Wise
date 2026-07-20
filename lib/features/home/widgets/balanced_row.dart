@@ -11,9 +11,12 @@ class BalanceRow extends StatelessWidget {
     super.key,
     required this.totalBalance,
     required this.totalExp,
+    required this.expenseRatio, // 0.0 to 1.0, e.g. 0.30
+    required this.totalIncomeLabel, // formatted, e.g. "$20,000.00"
   });
 
-  final String totalBalance, totalExp;
+  final String totalBalance, totalExp, totalIncomeLabel;
+  final double expenseRatio;
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +32,13 @@ class BalanceRow extends StatelessWidget {
                 icon: 'assets/Income.png',
               ),
             ),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: SizedBox(
                 height: 50.h,
-                child: VerticalDivider(
-                  width: 1.w,
-                  color: AppColors.secondary,
-                ),
+                child: VerticalDivider(width: 1.w, color: AppColors.secondary),
               ),
             ),
-
             Expanded(
               child: BalanceItem(
                 title: 'Total Expense',
@@ -51,44 +49,49 @@ class BalanceRow extends StatelessWidget {
             ),
           ],
         ),
-
         Gap(20.h),
-
         Stack(
           children: [
+            // white background = full income
             Container(
               height: 40.h,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.backgroundColor,
                 borderRadius: BorderRadius.circular(25.r),
               ),
             ),
-
-            Container(
-              constraints: BoxConstraints(minHeight: 40.h),
-              width: 120.w,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(25.r),
-              ),
-              alignment: Alignment.center,
-              child: CustomText(
-                text: '30%',
-                style: AppStyles.regular12.copyWith(
-                  color: AppColors.backgroundColor,
-                ),
-              ),
+            // black fill = expense portion
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final barWidth = (constraints.maxWidth * expenseRatio).clamp(
+                  60.w,
+                  constraints.maxWidth,
+                );
+                return Container(
+                  constraints: BoxConstraints(minHeight: 40.h),
+                  width: barWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(25.r),
+                  ),
+                  alignment: Alignment.center,
+                  child: CustomText(
+                    text: '${(expenseRatio * 100).toStringAsFixed(0)}%',
+                    style: AppStyles.regular12.copyWith(
+                      color: AppColors.backgroundColor,
+                    ),
+                  ),
+                );
+              },
             ),
-
             Positioned.fill(
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: CustomText(
-                    text: '\$20,000.00',
+                    text: totalIncomeLabel,
                     style: AppStyles.medium13,
                   ),
                 ),

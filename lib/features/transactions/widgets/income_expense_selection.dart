@@ -14,8 +14,9 @@ import '../cubit/filtered_tranactions_cubit.dart';
 import '../cubit/transaction_state.dart';
 
 class IncomeExpenseSelection extends StatelessWidget {
-  const IncomeExpenseSelection({super.key});
-
+  const IncomeExpenseSelection({super.key, required this.income, required this.expense});
+  final String income;
+  final String expense;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionsFilterCubit, TransactionState>(
@@ -51,7 +52,7 @@ class IncomeExpenseSelection extends StatelessWidget {
                         ),
                       ),
                       CustomText(
-                        text: '\$7,783.00',
+                        text: income,
                         style: AppStyles.semiBold20.copyWith(
                           color: filter == CategoryType.income ? AppColors.backgroundColor : AppColors.lettersandIcons,
                         ),
@@ -90,7 +91,7 @@ class IncomeExpenseSelection extends StatelessWidget {
                         ),
                       ),
                       CustomText(
-                        text: '\$7,783.00',
+                        text: expense,
                         style: AppStyles.semiBold20.copyWith(
                           color: filter == CategoryType.expense ? AppColors.backgroundColor : AppColors.lettersandIcons,
                         ),

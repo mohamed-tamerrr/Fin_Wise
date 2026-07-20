@@ -57,21 +57,20 @@ class HomeView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: BlocBuilder<SummaryCubit, SummaryState>(
                 builder: (context, state) {
-                  if (state is SummaryLoading) {
-                    return const BalanceRow(
-                      totalBalance: '\$7,783.00',
-                      totalExp: '-\$1,187.40',
-                    );
-                  }
                   if (state is SummarySuccess) {
+                    final summary = state.summary;
                     return BalanceRow(
-                      totalBalance: '\$${state.summary.balance}',
-                      totalExp: '-\$${state.summary.expense.toString()}',
+                      totalBalance: summary.formattedBalance,
+                      totalExp: summary.formattedExpense,
+                      expenseRatio: summary.expenseRatio,
+                      totalIncomeLabel: summary.formattedIncome,
                     );
                   }
                   return const BalanceRow(
                     totalBalance: '\$7,783.00',
                     totalExp: '-\$1,187.40',
+                    expenseRatio: 0.30,
+                    totalIncomeLabel: '\$20,000.00',
                   );
                 },
               ),

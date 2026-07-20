@@ -1,6 +1,7 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
 import '../../../core/utils/app_styles.dart';
+import '../../../shared/summary/cubit/summary_cubit.dart';
 import '../../../shared/widgets/color_filling.dart';
 import '../../../shared/widgets/custom_text.dart';
 import '../cubit/category_cubit.dart';
@@ -131,9 +132,24 @@ class CategoryViewDetails extends StatelessWidget {
                   ),
                   body: Padding(
                     padding: .symmetric(horizontal: 20.w),
-                    child: const BalanceRow(
-                      totalBalance: '\$7,783.00',
-                      totalExp: '-\$1,187.40',
+                    child: BlocBuilder<SummaryCubit, SummaryState>(
+                      builder: (context, state) {
+                        if (state is SummarySuccess) {
+                          final summary = state.summary;
+                          return BalanceRow(
+                            totalBalance: summary.formattedBalance,
+                            totalExp: summary.formattedExpense,
+                            expenseRatio: summary.expenseRatio,
+                            totalIncomeLabel: summary.formattedIncome,
+                          );
+                        }
+                        return const BalanceRow(
+                          totalBalance: '\$7,783.00',
+                          totalExp: '-\$1,187.40',
+                          expenseRatio: 0.30,
+                          totalIncomeLabel: '\$20,000.00',
+                        );
+                      },
                     ),
                   ),
                 ),

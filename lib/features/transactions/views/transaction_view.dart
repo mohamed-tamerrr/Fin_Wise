@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 
+import '../../../shared/summary/cubit/summary_cubit.dart';
 import '../../../shared/widgets/transaction_dismissible.dart';
 import '../../categories/widgets/category_view_details_failure.dart';
 import '../../categories/widgets/category_view_details_loading.dart';
@@ -70,17 +71,36 @@ class TransactionView extends StatelessWidget {
                             color: AppColors.lettersandIcons,
                           ),
                         ),
-                        CustomText(
-                          text: '\$7,783.00',
-                          style: AppStyles.bold24.copyWith(
-                            color: AppColors.lettersandIcons,
-                          ),
+                        BlocBuilder<SummaryCubit, SummaryState>(
+                          builder: (context, state) {
+                            final balanceText = state is SummarySuccess ? state.summary.formattedBalance : '\$7,783.00';
+                            return CustomText(
+                              text: balanceText,
+                              style: AppStyles.bold24.copyWith(
+                                color: AppColors.lettersandIcons,
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
                   Gap(15.h),
-                  const IncomeExpenseSelection(),
+                  BlocBuilder<SummaryCubit, SummaryState>(
+                    builder: (context, state) {
+                      if (state is SummarySuccess) {
+                        return IncomeExpenseSelection(
+                          income: state.summary.formattedIncome,
+                          expense: state.summary.formattedExpense,
+                        );
+                      }
+                      // Loading, Initial, and Failure all fall back to placeholder data
+                      return const IncomeExpenseSelection(
+                        income: '\$7,783.00',
+                        expense: '-\$1,187.40',
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

@@ -20,6 +20,12 @@ class Transaction extends StatelessWidget {
   final TransactionModel transaction;
   final CategoryModel? category; // nullable in case category was deleted
 
+  String _foramttedAmout() {
+    final isIncome = category?.type == CategoryType.income;
+    final amount = transaction.amount.toStringAsFixed(2);
+    return isIncome ? '\$$amount' : '-\$$amount';
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -53,7 +59,7 @@ class Transaction extends StatelessWidget {
           VerticalDivider(color: AppColors.primary, thickness: 1, indent: 4, endIndent: 4),
           const Gap(12),
           CustomText(
-            text: '-\$${transaction.amount.toStringAsFixed(2)}',
+            text: _foramttedAmout(),
             style: AppStyles.medium15,
           ),
         ],
