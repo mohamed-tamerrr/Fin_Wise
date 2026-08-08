@@ -50,8 +50,7 @@ class _RootState extends State<Root> {
       backgroundColor: AppColors.backgroundColor,
       body: PageView(
         controller: controller,
-        physics:
-            const NeverScrollableScrollPhysics(), // disable swipe
+        physics: const NeverScrollableScrollPhysics(), // disable swipe
         children: screens,
       ),
       bottomNavigationBar: Padding(
@@ -137,9 +136,7 @@ class NavItem extends StatelessWidget {
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isActive
-              ? const Color(0xFF00C569)
-              : Colors.transparent,
+          color: isActive ? const Color(0xFF00C569) : Colors.transparent,
           shape: BoxShape.circle,
         ),
         child: Icon(

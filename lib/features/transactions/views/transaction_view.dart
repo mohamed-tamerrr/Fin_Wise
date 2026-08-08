@@ -49,7 +49,7 @@ class TransactionView extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.white.withValues(alpha: .2),
                     ),
-                    child: const Icon(Icons.notifications),
+                    child: Icon(Icons.notifications, size: 24.sp),
                   ),
                 ],
               ),

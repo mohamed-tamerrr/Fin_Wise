@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../core/helpers/icon_mapper.dart';
-import '../../../core/utils/app_colors.dart';
 import '../../../shared/widgets/custom_text.dart';
 import '../cubit/category_cubit.dart';
 import '../data/models/category_model.dart';
@@ -112,7 +111,7 @@ class _AddCategoryState extends State<AddCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -127,7 +126,7 @@ class _AddCategoryState extends State<AddCategory> {
             Container(
               padding: EdgeInsets.all(4.r),
               decoration: BoxDecoration(
-                color: AppColors.backgroundColor,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(14.r),
               ),
               child: TypeToggle(

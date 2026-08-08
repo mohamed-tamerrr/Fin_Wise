@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key});
-
+  const CustomCard({super.key, required this.revenue, required this.food});
+  final String revenue;
+  final String food;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,7 +81,7 @@ class CustomCard extends StatelessWidget {
                 CardStatRow(
                   iconPath: 'assets/Salary.png',
                   label: 'Revenue Last Week',
-                  amount: '\$4,000.00',
+                  amount: revenue,
                   amountColor: AppColors.secondaryTextColor,
                 ),
 
@@ -96,7 +97,7 @@ class CustomCard extends StatelessWidget {
                 CardStatRow(
                   iconPath: 'assets/Food.png',
                   label: 'Food Last Week',
-                  amount: '-\$100.00',
+                  amount: food,
                   amountColor: AppColors.oceanBlueButton,
                 ),
               ],

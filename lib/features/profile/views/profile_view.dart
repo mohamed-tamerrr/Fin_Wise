@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
   static const List<ProfileMenuItem> menuItems = [
     ProfileMenuItem(
       title: 'Edit Profile',
-      image: 'assets/profile/edit.png',
+      image: 'assets/profile/edit_profile.png',
       path: AppRouter.editProfileView,
     ),
     ProfileMenuItem(

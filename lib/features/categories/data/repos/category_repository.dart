@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../../../core/database/isar_service.dart';
-import '../../../../core/helpers/icon_mapper.dart';
 import '../models/category_model.dart';
 import 'package:isar/isar.dart';
 

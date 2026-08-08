@@ -9,10 +9,10 @@ final class SummaryLoading extends SummaryState {}
 
 final class SummarySuccess extends SummaryState {
   SummarySuccess(this.summary);
-  SummaryModel summary;
+  final SummaryModel summary;
 }
 
 final class SummaryFailure extends SummaryState {
   SummaryFailure(this.errorMessage);
-  String errorMessage;
+  final String errorMessage;
 }

@@ -3,7 +3,6 @@ import '../../../core/utils/app_router.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../../shared/summary/cubit/summary_cubit.dart';
 import '../cubit/category_cubit.dart';
-import '../data/models/category_model.dart';
 import '../widgets/category_card.dart';
 import '../../home/widgets/balanced_row.dart';
 import '../../../shared/widgets/custom_app_bar.dart';

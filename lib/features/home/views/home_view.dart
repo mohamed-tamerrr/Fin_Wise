@@ -95,7 +95,21 @@ class HomeView extends StatelessWidget {
               child: Column(
                 children: [
                   Gap(30.h),
-                  const CustomCard(),
+                  BlocBuilder<SummaryCubit, SummaryState>(
+                    builder: (context, state) {
+                      if (state is SummarySuccess) {
+                        final summary = state.summary;
+                        return CustomCard(
+                          revenue: summary.formattedIncome,
+                          food: summary.formattedExpense,
+                        );
+                      }
+                      return const CustomCard(
+                        revenue: '\$20,000.00',
+                        food: '-\$1,187.40',
+                      );
+                    },
+                  ),
                   Gap(26.h),
                   const HomeTabs(),
                 ],

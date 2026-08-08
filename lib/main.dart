@@ -9,6 +9,7 @@ import 'features/transactions/data/repo/transaction_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/theme/app_theme.dart';
 
 import 'shared/summary/cubit/summary_cubit.dart';
 import 'shared/summary/data/repos/summary_repo.dart';
@@ -68,6 +69,7 @@ class FinWise extends StatelessWidget {
             return MaterialApp.router(
               debugShowCheckedModeBanner: false,
               routerConfig: AppRouter.router,
+              theme: AppTheme.light(context),
             );
           },
         ),

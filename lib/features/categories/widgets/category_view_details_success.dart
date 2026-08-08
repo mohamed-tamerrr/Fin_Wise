@@ -1,9 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../shared/widgets/transaction_dismissible.dart';
-import '../../transactions/cubit/transaction_cubit.dart';
 import '../../transactions/data/models/transaction_details_model.dart';
-import '../../transactions/data/models/transaction_model.dart';
 import '../data/models/category_model.dart';
 import 'category_transactions.dart';
 import 'package:flutter/material.dart';

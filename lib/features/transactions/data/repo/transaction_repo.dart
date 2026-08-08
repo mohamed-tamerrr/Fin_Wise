@@ -1,4 +1,3 @@
-import '../../../../core/database/isar_service.dart';
 import '../../../categories/data/models/category_model.dart';
 import '../models/transaction_model.dart';
 import 'package:isar/isar.dart';
