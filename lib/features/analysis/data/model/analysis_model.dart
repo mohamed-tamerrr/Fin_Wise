@@ -2,11 +2,12 @@ enum AnalyticsPeriod { daily, weekly, monthly, yearly }
 
 /// for each column - section of the chart
 class AnalyticsBucket {
-  AnalyticsBucket({required this.label, required this.income, required this.expense});
+  AnalyticsBucket({required this.label, this.income = 0, this.expense = 0, required this.date});
 
   final String label;
-  final double income;
-  final double expense;
+  double income;
+  double expense;
+  final DateTime date;
 }
 
 /// Model for th e analytics data
