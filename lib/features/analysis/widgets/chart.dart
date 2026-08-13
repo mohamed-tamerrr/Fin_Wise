@@ -5,6 +5,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// todo : inegtrate with cubit to get data from database and display in chart
 class Chart extends StatelessWidget {
   const Chart({super.key});
 

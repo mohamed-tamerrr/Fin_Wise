@@ -1,8 +1,13 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../../shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../cubit/analysis_cubit.dart';
+import '../data/model/analysis_model.dart';
 
 class AnalysisTabs extends StatefulWidget {
   const AnalysisTabs({super.key});
@@ -13,6 +18,12 @@ class AnalysisTabs extends StatefulWidget {
 
 class _AnalysisTabsState extends State<AnalysisTabs> {
   final tabs = ['Daily', 'Weekly', 'Monthly', 'Year'];
+  final periods = [
+    AnalyticsPeriod.daily,
+    AnalyticsPeriod.weekly,
+    AnalyticsPeriod.monthly,
+    AnalyticsPeriod.yearly,
+  ];
   int selected = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,6 +42,7 @@ class _AnalysisTabsState extends State<AnalysisTabs> {
                 setState(() {
                   selected = index;
                 });
+                context.read<AnalysisCubit>().getAnalysis(periods[index]);
               },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 4.w),

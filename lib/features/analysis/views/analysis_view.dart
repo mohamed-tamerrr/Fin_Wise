@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../../shared/summary/cubit/summary_cubit.dart';
+import '../cubit/analysis_cubit.dart';
 import '../widgets/analysis_tabs.dart';
 import '../widgets/income_expense_chart.dart';
 import '../widgets/money_info.dart';
@@ -82,56 +83,60 @@ class AnalysisView extends StatelessWidget {
                   top: Radius.circular(60.r),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AnalysisTabs(),
-                  Gap(30.h),
-                  const IncomeExpenseChart(),
-                  Gap(30.h),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                    ),
-                    child: Row(
-                      children: [
-                        const MoneyInfo(
-                          image: 'assets/Income.png',
-                          title: 'Income',
-                          amount: '\$4,120.00',
-                        ),
-                        const Spacer(),
-                        MoneyInfo(
-                          image: 'assets/Expenses.png',
-                          title: 'Expense',
-                          amount: '\$1.187.40',
-                          color: AppColors.oceanBlueButton,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Gap(30.h),
-                  CustomText(
-                    text: 'My targets',
-                    style: AppStyles.medium15,
-                  ),
-                  Gap(15.h),
-                  Row(
+              child: BlocBuilder<AnalysisCubit, AnalysisState>(
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TargetItem(
-                        title: 'Travel',
-                        value: .3,
-                        percentage: '30%',
+                      const AnalysisTabs(),
+                      Gap(30.h),
+                      const IncomeExpenseChart(),
+                      Gap(30.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                        ),
+                        child: Row(
+                          children: [
+                            const MoneyInfo(
+                              image: 'assets/Income.png',
+                              title: 'Income',
+                              amount: '\$4,120.00',
+                            ),
+                            const Spacer(),
+                            MoneyInfo(
+                              image: 'assets/Expenses.png',
+                              title: 'Expense',
+                              amount: '\$1.187.40',
+                              color: AppColors.oceanBlueButton,
+                            ),
+                          ],
+                        ),
                       ),
-                      Gap(20.w),
-                      const TargetItem(
-                        title: 'Car',
-                        value: .5,
-                        percentage: '50%',
+                      Gap(30.h),
+                      CustomText(
+                        text: 'My targets',
+                        style: AppStyles.medium15,
+                      ),
+                      Gap(15.h),
+                      Row(
+                        children: [
+                          const TargetItem(
+                            title: 'Travel',
+                            value: .3,
+                            percentage: '30%',
+                          ),
+                          Gap(20.w),
+                          const TargetItem(
+                            title: 'Car',
+                            value: .5,
+                            percentage: '50%',
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ),
