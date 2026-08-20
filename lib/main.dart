@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'core/database/isar_service.dart';
 import 'core/utils/app_router.dart';
 import 'features/analysis/cubit/analysis_cubit.dart';
+import 'features/analysis/data/model/analysis_model.dart';
 import 'features/analysis/data/repo/analysis_repo.dart';
 import 'features/categories/cubit/category_cubit.dart';
 import 'features/categories/data/repos/category_repository.dart';
@@ -51,7 +52,8 @@ class FinWise extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => AnalysisCubit(analysisRepo: context.read<AnalysisRepo>()),
+            create: (context) =>
+                AnalysisCubit(analysisRepo: context.read<AnalysisRepo>())..getAnalysis(AnalyticsPeriod.daily),
           ),
           BlocProvider(
             create: (context) => CategoryCubit(categoryRepo: categoryRepository)..getCategories(),

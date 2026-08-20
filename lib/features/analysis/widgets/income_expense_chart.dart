@@ -1,5 +1,6 @@
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
+import '../data/model/analysis_model.dart';
 import 'chart.dart';
 import 'icon_button.dart';
 import 'legend_item.dart';
@@ -10,8 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class IncomeExpenseChart extends StatelessWidget {
-  const IncomeExpenseChart({super.key});
-
+  const IncomeExpenseChart({super.key, required this.buckets});
+  final List<AnalyticsBucket> buckets;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +47,7 @@ class IncomeExpenseChart extends StatelessWidget {
           Gap(16.h),
 
           // Chart
-          const Chart(),
+          Chart(buckets: buckets),
 
           Gap(12.h),
 
@@ -55,12 +56,12 @@ class IncomeExpenseChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LegendItem(
-                color: AppColors.oceanBlueButton,
+                color: AppColors.primary,
                 label: 'Income',
               ),
               Gap(24.w),
               LegendItem(
-                color: AppColors.primary,
+                color: AppColors.oceanBlueButton,
                 label: 'Expenses',
               ),
             ],

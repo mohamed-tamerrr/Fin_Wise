@@ -90,49 +90,75 @@ class AnalysisView extends StatelessWidget {
                     children: [
                       const AnalysisTabs(),
                       Gap(30.h),
-                      const IncomeExpenseChart(),
-                      Gap(30.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                        ),
-                        child: Row(
-                          children: [
-                            const MoneyInfo(
-                              image: 'assets/Income.png',
-                              title: 'Income',
-                              amount: '\$4,120.00',
-                            ),
-                            const Spacer(),
-                            MoneyInfo(
-                              image: 'assets/Expenses.png',
-                              title: 'Expense',
-                              amount: '\$1.187.40',
-                              color: AppColors.oceanBlueButton,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Gap(30.h),
-                      CustomText(
-                        text: 'My targets',
-                        style: AppStyles.medium15,
-                      ),
-                      Gap(15.h),
-                      Row(
-                        children: [
-                          const TargetItem(
-                            title: 'Travel',
-                            value: .3,
-                            percentage: '30%',
-                          ),
-                          Gap(20.w),
-                          const TargetItem(
-                            title: 'Car',
-                            value: .5,
-                            percentage: '50%',
-                          ),
-                        ],
+                      BlocBuilder<AnalysisCubit, AnalysisState>(
+                        builder: (context, state) {
+                          if (state is AnalysisSuccess) {
+                            final buckets = state.model.buckets;
+                            final totalIncome = state.model.totalIncome;
+                            final totalExpense = state.model.totalExpense;
+                            return Column(
+                              children: [
+                                IncomeExpenseChart(
+                                  buckets: buckets,
+                                ),
+                                Gap(30.h),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 30,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      MoneyInfo(
+                                        image: 'assets/Income.png',
+                                        title: 'Income',
+                                        amount: '\$${totalIncome.toStringAsFixed(2)}',
+                                      ),
+                                      const Spacer(),
+                                      MoneyInfo(
+                                        image: 'assets/Expenses.png',
+                                        title: 'Expense',
+                                        amount: '\$${totalExpense.toStringAsFixed(2)}',
+                                        color: AppColors.oceanBlueButton,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Gap(30.h),
+                                CustomText(
+                                  text: 'My targets',
+                                  style: AppStyles.medium15,
+                                ),
+                                Gap(15.h),
+                                Row(
+                                  children: [
+                                    const TargetItem(
+                                      title: 'Travel',
+                                      value: .3,
+                                      percentage: '30%',
+                                    ),
+                                    Gap(20.w),
+                                    const TargetItem(
+                                      title: 'Car',
+                                      value: .5,
+                                      percentage: '50%',
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else if (state is AnalysisError) {
+                            return Center(
+                              child: CustomText(
+                                text: 'Error: ${state.message}',
+                                style: AppStyles.regular14.copyWith(
+                                  color: Colors.red,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        },
                       ),
                     ],
                   );

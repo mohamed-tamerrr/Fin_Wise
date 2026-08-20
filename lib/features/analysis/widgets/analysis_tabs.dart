@@ -25,6 +25,13 @@ class _AnalysisTabsState extends State<AnalysisTabs> {
     AnalyticsPeriod.yearly,
   ];
   int selected = 0;
+
+  // @override
+  // void initState() {
+  //   context.read<AnalysisCubit>().getAnalysis(periods[selected]);
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,9 +46,7 @@ class _AnalysisTabsState extends State<AnalysisTabs> {
           return Expanded(
             child: GestureDetector(
               onTap: () {
-                setState(() {
-                  selected = index;
-                });
+                setState(() => selected = index);
                 context.read<AnalysisCubit>().getAnalysis(periods[index]);
               },
               child: Padding(

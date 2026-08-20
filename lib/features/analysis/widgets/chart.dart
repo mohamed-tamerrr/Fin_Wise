@@ -5,39 +5,29 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// todo : inegtrate with cubit to get data from database and display in chart
+import '../data/model/analysis_model.dart';
+
 class Chart extends StatelessWidget {
-  const Chart({super.key});
+  const Chart({super.key, required this.buckets});
+  final List<AnalyticsBucket> buckets;
 
   List<BarChartGroupData> _buildBarGroups() {
-    // [income, expense] per day
-    final data = [
-      [8000.0, 1000.0], // Mon
-      [2000.0, 1500.0], // Tue
-      [6000.0, 1000.0], // Wed
-      [3000.0, 1000.0], // Thu
-      [10000.0, 1000.0], // Fri
-      [2000.0, 1500.0], // Sat
-      [6000.0, 5000.0], // Sun
-    ];
-
-    return data.asMap().entries.map((e) {
+    return buckets.asMap().entries.map((e) {
       final index = e.key;
-      final income = e.value[0];
-      final expense = e.value[1];
+      final bucket = e.value;
 
       return BarChartGroupData(
         x: index,
         barRods: [
           BarChartRodData(
-            toY: income,
-            color: AppColors.oceanBlueButton,
+            toY: bucket.income,
+            color: AppColors.primary,
             width: 8.w,
             borderRadius: BorderRadius.circular(4.r),
           ),
           BarChartRodData(
-            toY: expense,
-            color: AppColors.primary,
+            toY: bucket.expense,
+            color: AppColors.oceanBlueButton,
             width: 8.w,
             borderRadius: BorderRadius.circular(4.r),
           ),
@@ -47,6 +37,11 @@ class Chart extends StatelessWidget {
     }).toList();
   }
 
+  double get _maxY {
+    final maxVal = buckets.expand((b) => [b.income, b.expense]).fold<double>(0, (max, v) => v > max ? v : max);
+    return (maxVal * 1.2).clamp(1000, double.infinity); // 20% headroom, avoid a flat 0-max chart
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -54,8 +49,8 @@ class Chart extends StatelessWidget {
       child: BarChart(
         BarChartData(
           alignment: BarChartAlignment.spaceAround,
-          maxY: 15000,
-          minY: 1000,
+          maxY: _maxY,
+          minY: 0,
 
           gridData: FlGridData(
             checkToShowHorizontalLine: (value) => true,
@@ -109,20 +104,14 @@ class Chart extends StatelessWidget {
                 showTitles: true,
                 reservedSize: 28.h,
                 getTitlesWidget: (value, meta) {
-                  const days = [
-                    'Mon',
-                    'Tue',
-                    'Wed',
-                    'Thu',
-                    'Fri',
-                    'Sat',
-                    'Sun',
-                  ];
-
+                  final index = value.toInt();
+                  if (index < 0 || index >= buckets.length) {
+                    return const SizedBox.shrink();
+                  }
                   return Padding(
                     padding: EdgeInsets.only(top: 6.h),
                     child: CustomText(
-                      text: days[value.toInt()],
+                      text: buckets[index].label,
                       style: AppStyles.regular14.copyWith(
                         color: AppColors.lettersandIcons,
                       ),
