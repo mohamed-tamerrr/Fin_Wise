@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../../shared/summary/cubit/summary_cubit.dart';
+import '../../../shared/widgets/color_filling.dart';
 import '../cubit/analysis_cubit.dart';
 import '../widgets/analysis_tabs.dart';
 import '../widgets/income_expense_chart.dart';
@@ -166,6 +167,7 @@ class AnalysisView extends StatelessWidget {
               ),
             ),
           ),
+          ColorFilling(),
         ],
       ),
     );
