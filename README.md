@@ -23,7 +23,7 @@ A clean, modern personal finance and expense tracking app built with Flutter. Tr
     <td align="center"><b>Profile</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/Add category.jpg" width="250"/></td>
+    <td><img src="screenshots/Category.jpg" width="250"/></td>
     <td><img src="screenshots/Add category.jpg" width="250"/></td>
     <td><img src="screenshots/Profile.jpg" width="250"/></td>
   </tr>
